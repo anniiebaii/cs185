@@ -1,0 +1,100 @@
+body {
+  background-color: #ffff;
+  font-family: "Lucida Console", Courier, monospace;
+}
+
+img.resize {
+  max-width: 30%;
+  max-height: 30%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  margin-left: auto;
+  margin-right:auto;
+  width: 50%;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #2d4829;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+/* TODO: keep link colored when selected */
+li a:hover:not(.active) {
+  background-color: #f1e4d3;
+}
+
+li a:active {
+  background-color: #f1e4d3;
+}
+
+hr {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 1px;
+  width: 90%;
+  background-color:#666;
+  opacity: 0.5;
+}
+
+.active {
+  background-color: #f1e4d3;
+}
+
+.navigation-container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding-bottom: 20px;
+
+}
+.navigation {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+
+}
+
+.page-container {
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0.15);
+  margin: 00px auto;
+  padding-left: 0px;
+  padding-right: 0px;
+  max-width: 1000px;
+
+}
+
+.text-body {
+  color: #7a7a74;
+}
+
+.header {
+  text-align: center;
+  color: #2d4829;
+}
+
+h1.header {
+  color: #2d4829;
+  background-color;
+  text-align: center;
+  padding-top: 40px;
+}
