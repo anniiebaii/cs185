@@ -1,23 +1,37 @@
 <?DOCTYPE html>
 
 <html>
+
 <head>
   <link rel="stylesheet" type="text/css" href="style.css">
-<title>CMPSC 185</title>
-
+  <title>CMPSC 185</title>
 </head>
 
 <body>
+  <div class="header">
+      <h1 class="header">Welcome</h1>
+  </div>
 
-<div>
-  <h1>This is CS185</h1>
-</div>
+  <div class="navigation-container">
+    <ul class="navigation">
+      <li><a class="button" id="home" href="index.html" onclick="active(id)">Home</a></li>
+      <li><a class="button" id="gallery" href="" onclick="active(id)">Gallery</a></li>
+      <li><a class="button" id="updates" href="" onclick="active(id)">Updates</a></li>
+      <li><a class="button" id="about" href="" onclick="active(id)">About</a></li>
+      <script>
+        function active(id) {
+          // document.getElementById(id).style.backgroundColor = "#f1e4d3";
+        }
+      </script>
+    </ul>
+    <hr></hr>
+  </div>
 
-<div>
-<img src="images/bytes.png" alt="Girl in a jacket">
-<p>This is a bit of a joke.</p>
+  <div class="page-container">
+    <img class="resize" src="images/bytes.png" alt="Byte Joke">
+    <p class="text-body">Welcome to Annie Bai's page! This page is still under construction.</p>
+  </div>
 
-</div>
 
 </body>
 
