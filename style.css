@@ -91,9 +91,8 @@ hr {
     margin: auto;
     padding-left: 0px;
     padding-right: 0px;
-    padding-bottom: 50px;
     max-width: 1000px;
-    height: 400px;
+    height: auto;
     margin-bottom: 50px;
     overflow: hidden;
 }
@@ -103,6 +102,7 @@ hr {
   margin-bottom: 30px;
   height: auto;
   width: auto;
+  overflow: visible;
 }
 
 .header {
@@ -114,13 +114,13 @@ h1.header {
   color: #2d4829;
   background-color;
   text-align: center;
-  padding-top: 40px;
 }
 
 .video {
     width: 800px;
     max-height: 800px;
     overflow: hidden;
+    margin-bottom: 30px;
 }
 
 .mobile-video {
@@ -129,16 +129,20 @@ h1.header {
     margin-right: 50px;
     width: 200px;
     overflow: hidden;
+    margin-bottom: 10px;
+    max-height: 400px;
 }
 
 .mobile-image {
     image-orientation: from-image;
     width: auto;
-    height: 400;
+    height: 400px;
+    max-height:400px;
     max-width: 400px;
     float: left;
     margin-right: 50px;
     overflow: hidden;
+    margin-bottom: 30px;
 }
 
 
