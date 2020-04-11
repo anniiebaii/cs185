@@ -82,6 +82,7 @@ hr {
   padding-bottom: 50px;
   max-width: 1000px;
   overflow: hidden;
+  height: auto;
 
 }
 
@@ -92,7 +93,7 @@ hr {
     padding-right: 0px;
     padding-bottom: 50px;
     max-width: 1000px;
-    height: 400;
+    height: auto;
     margin-bottom: 50px;
     overflow: hidden;
 }
