@@ -81,6 +81,7 @@ hr {
   padding-right: 0px;
   padding-bottom: 50px;
   max-width: 1000px;
+  overflow: hidden;
   height: auto;
 
 }
@@ -94,6 +95,7 @@ hr {
     max-width: 1000px;
     height: auto;
     margin-bottom: 50px;
+    overflow: hidden;
 }
 
 .text-body {
@@ -147,5 +149,4 @@ h1.header {
     float: left;
     margin-right: 50px;
     overflow: hidden;
-    max-height: 400px;
 }
