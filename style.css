@@ -120,19 +120,29 @@ h1.header {
     overflow: hidden;
 }
 
-.mobile_video {
+.mobile-video {
     height: 400px;
     float: left;
     margin-right: 50px;
-    max-width: 200px;
+    width: 200px;
     overflow: hidden;
 }
 
-.image {
+.mobile-image {
     image-orientation: from-image;
     width: auto;
     height: 400;
     max-width: 400px;
+    float: left;
+    margin-right: 50px;
+    overflow: hidden;
+}
+
+
+.image {
+    image-orientation: from-image;
+    height: auto;
+    width: 400px;
     float: left;
     margin-right: 50px;
     overflow: hidden;
