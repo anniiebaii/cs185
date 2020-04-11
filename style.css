@@ -115,6 +115,7 @@ h1.header {
 .video {
     width: 800px;
     height: auto;
+    max-height: 800px;
 }
 
 .mobile_video {
@@ -122,12 +123,14 @@ h1.header {
     height: 400px;
     float: left;
     margin-right: 50px;
+    max-width: 200px;
 }
 
 .image {
     image-orientation: from-image;
     width: auto;
     height: 400;
+    max-width: 400px;
     float: left;
     margin-right: 50px;
 }
