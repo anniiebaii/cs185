@@ -79,12 +79,25 @@ hr {
   margin: 00px auto;
   padding-left: 0px;
   padding-right: 0px;
+  padding-bottom: 50px;
   max-width: 1000px;
 
 }
 
+.sub-page-container {
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.15);
+    margin: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 50px;
+    max-width: 1000px;
+    height: 400;
+    margin-bottom: 50px;
+}
+
 .text-body {
   color: #7a7a74;
+  margin-bottom: 30px;
 }
 
 .header {
@@ -97,4 +110,24 @@ h1.header {
   background-color;
   text-align: center;
   padding-top: 40px;
+}
+
+.video {
+    width: 800px;
+    height: auto;
+}
+
+.mobile_video {
+    width: auto;
+    height: 400px;
+    float: left;
+    margin-right: 50px;
+}
+
+.image {
+    image-orientation: from-image;
+    width: auto;
+    height: 400;
+    float: left;
+    margin-right: 50px;
 }
