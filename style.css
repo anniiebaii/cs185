@@ -124,7 +124,8 @@ h1.header {
     margin-right: 50px;
 }
 
-.images {
+.image {
+    image-orientation: from-image;
     width: auto;
     height: 400;
     float: left;
