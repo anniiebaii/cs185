@@ -79,6 +79,7 @@ hr {
   margin: 00px auto;
   padding-left: 0px;
   padding-right: 0px;
+  padding-bottom: 50px;
   max-width: 1000px;
 
 }
@@ -97,4 +98,19 @@ h1.header {
   background-color;
   text-align: center;
   padding-top: 40px;
+}
+
+.video {
+    width: 800px;
+    height: auto;
+}
+
+.mobile_video {
+    width: auto;
+    height: 400px;
+}
+
+.images {
+    width: auto;
+    height: 400;
 }
