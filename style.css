@@ -81,6 +81,7 @@ hr {
   padding-right: 0px;
   padding-bottom: 50px;
   max-width: 1000px;
+  overflow: hidden;
 
 }
 
@@ -93,6 +94,7 @@ hr {
     max-width: 1000px;
     height: 400;
     margin-bottom: 50px;
+    overflow: hidden;
 }
 
 .text-body {
@@ -114,16 +116,16 @@ h1.header {
 
 .video {
     width: 800px;
-    height: auto;
     max-height: 800px;
+    overflow: hidden;
 }
 
 .mobile_video {
-    width: auto;
     height: 400px;
     float: left;
     margin-right: 50px;
     max-width: 200px;
+    overflow: hidden;
 }
 
 .image {
@@ -133,4 +135,5 @@ h1.header {
     max-width: 400px;
     float: left;
     margin-right: 50px;
+    overflow: hidden;
 }
