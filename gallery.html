@@ -29,29 +29,25 @@
 
   <div class="page-container">
     <div class="sub-page-container">
-
-        <button onclick="topFunction()" id="myBtn" title="Go to top">^</button>
         <script>
           // Back to Top button listener
           var mybutton = document.getElementById("myBtn");
           window.onscroll = function() {scrollFunction()};
 
           function openModal(id)  {
-              // Get the modal
-              console.log("open modal");
               var modal = document.getElementById("myModal");
-
-              // Get the image and insert it inside the modal - use its "alt" text as a caption
               var img = document.getElementById(id);
               var modalImg = document.getElementById("modal-content");
               var captionText = document.getElementById("caption");
+
               modal.style.display = "block";
-              modalImg.src = img.src;
-              captionText.innerHTML = img.alt;
-              // Get the <span> element that closes the modal
+              modalImg.src = img.src; // insert clicked image into modal content
+              captionText.innerHTML = img.alt; // alt as caption
+
+              // <span> element for "x" button to close the modal
               var span = document.getElementsByClassName("close")[0];
 
-              // When the user clicks on <span> (x), close the modal
+              // close the modal
               span.onclick = function() {
                 modal.style.display = "none";
               }
@@ -60,26 +56,29 @@
         </script>
 
         <h2 class="subheader">Gallery</h2>
+        <!-- Back to the Top Button -->
+        <button onclick="topFunction()" id="myBtn" title="Go to top">^</button>
 
-        <!-- The Modal -->
+        <!-- The Modal Fragment -->
         <div id="myModal" class="modal">
           <span class="close">&times;</span>
           <img class="modal-content" id="modal-content">
           <div id="caption">HELLLOOOO</div>
         </div>
-        <img id="img01" class="modal-image" src="images/lionel.jpg" alt="Snow" onclick="openModal(id)">
-        <img id="img02" class="modal-image" src="images/lionel.jpg" alt="Snow" onclick="openModal(id)">
 
-
-
-
+        <!-- Images Gallery -->
         <!-- TODO: possibly hover and show image caption instead? -->
-        <!-- <image class="image" src="images/lionel.jpg">
-        <image class="image" src="images/lionel.jpg">
-        <image class="image" src="images/lionel.jpg">
-        <image class="image" src="images/lionel.jpg">
-        <image class="image" src="images/lionel.jpg"> -->
-
+        <img id="img01"
+             class="modal-image"
+             src="images/lionel.jpg"
+             alt="Meet Lionel, my German Shepherd puppy who will be coming home with me in about three weeks! Lionel is a stubborn puppy that won't let anything stop him from getting head scritches and naps on my lap."
+             onclick="openModal(id)">
+        <img id="img02" class="modal-image" src="images/lionel.jpg" alt="Lionel" onclick="openModal(id)">
+        <img id="img03"
+             class="modal-image"
+             src="images/lionel.jpg"
+             alt="Meet Lionel, my German Shepherd puppy who will be coming home with me in about three weeks! Lionel is a stubborn puppy that won't let anything stop him from getting head scritches and naps on my lap."
+             onclick="openModal(id)">
     </div>
   </div>
 
