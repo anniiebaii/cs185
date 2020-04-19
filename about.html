@@ -4,6 +4,7 @@
 
 <head>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="functions.js"></script>
   <title>About Me</title>
 </head>
 
@@ -20,12 +21,18 @@
         <!-- SpeedChess, ThinkFast, Bankteller Screenshots/Boomberang Demos -->
         <li><a class="button" id="projects" href="projects.html">Projects</a></li>
         <!-- Intro, hobbies, next steps ==> Pix -->
-        <li><a class="button" id="about" href="about.html">About</a></li>
+        <li><a class="active-button" id="about" href="about.html">About</a></li>
         <li><a class="button" id="github" href="https://github.com/anniiebaii/portfolio" onclick="active(id)">Github</a></li>
       </ul>
       <hr></hr>
     </div>
     <div class="page-container">
+      <button onclick="topFunction()" id="myBtn" title="Go to top">^</button>
+      <script>
+        //Get the button
+        var mybutton = document.getElementById("myBtn");
+        window.onscroll = function() {scrollFunction()};
+      </script>
       <h2 class="subheader">About Me</h2>
 
       <img class="image" src="images/Me.JPG">
