@@ -93,7 +93,7 @@ hr {
 
 .sub-page-container {
     box-shadow: 0 0 0px rgba(0, 0, 0, 0.15);
-    margin: auto;
+    /* margin: auto; */
     padding-left: 0px;
     padding-right: 0px;
     max-width: 1000px;
@@ -157,7 +157,6 @@ h1.header {
     overflow: hidden;
     margin-bottom: 30px;
 }
-
 
 .image {
     height: auto;
@@ -280,8 +279,7 @@ img.modal-image:hover {
   transition: 0.3s;
 }
 
-.close:hover,
-.close:focus {
+.close:hover, .close:focus {
   color: #bbb;
   text-decoration: none;
   cursor: pointer;
