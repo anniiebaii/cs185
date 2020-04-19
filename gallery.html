@@ -32,19 +32,53 @@
 
         <button onclick="topFunction()" id="myBtn" title="Go to top">^</button>
         <script>
-          //Get the button
+          // Back to Top button listener
           var mybutton = document.getElementById("myBtn");
           window.onscroll = function() {scrollFunction()};
+
+          function openModal(id)  {
+              // Get the modal
+              console.log("open modal");
+              var modal = document.getElementById("myModal");
+
+              // Get the image and insert it inside the modal - use its "alt" text as a caption
+              var img = document.getElementById(id);
+              var modalImg = document.getElementById("modal-content");
+              var captionText = document.getElementById("caption");
+              modal.style.display = "block";
+              modalImg.src = img.src;
+              captionText.innerHTML = img.alt;
+              // Get the <span> element that closes the modal
+              var span = document.getElementsByClassName("close")[0];
+
+              // When the user clicks on <span> (x), close the modal
+              span.onclick = function() {
+                modal.style.display = "none";
+              }
+          }
+
         </script>
+
         <h2 class="subheader">Gallery</h2>
 
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+          <span class="close">&times;</span>
+          <img class="modal-content" id="modal-content">
+          <div id="caption">HELLLOOOO</div>
+        </div>
+        <img id="img01" class="modal-image" src="images/lionel.jpg" alt="Snow" onclick="openModal(id)">
+        <img id="img02" class="modal-image" src="images/lionel.jpg" alt="Snow" onclick="openModal(id)">
+
+
+
+
         <!-- TODO: possibly hover and show image caption instead? -->
+        <!-- <image class="image" src="images/lionel.jpg">
         <image class="image" src="images/lionel.jpg">
         <image class="image" src="images/lionel.jpg">
         <image class="image" src="images/lionel.jpg">
-        <image class="image" src="images/lionel.jpg">
-        <image class="image" src="images/lionel.jpg">
-        <image class="image" src="images/lionel.jpg">
+        <image class="image" src="images/lionel.jpg"> -->
 
     </div>
   </div>
