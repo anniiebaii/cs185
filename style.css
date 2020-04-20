@@ -12,7 +12,6 @@ ul {
   list-style-type: none;
   margin: auto;
   padding: auto;
-  overflow: hidden;
   text-align: center;
   /* margin-block-start: auto;
   margin-block-end: auto;
@@ -35,6 +34,7 @@ li a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  overflow: display;
 }
 /* TODO: keep link colored when selected */
 li a:hover:not(.active) {
