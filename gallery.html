@@ -29,11 +29,6 @@
 
   <div class="page-container">
     <div class="sub-page-container">
-        <script>
-          // Back to Top button listener
-          var mybutton = document.getElementById("myBtn");
-          window.onscroll = function() {scrollFunction()};
-        </script>
 
         <h2 class="subheader">Gallery</h2>
         <!-- Back to the Top Button -->
@@ -45,6 +40,19 @@
           <img class="modal-content" id="modal-content">
           <div id="caption"></div>
         </div>
+
+        <script>
+          // Back to Top button listener
+          var mybutton = document.getElementById("myBtn");
+          window.onscroll = function() {scrollFunction()};
+
+          var modal = document.getElementById("myModal");
+          window.onclick = function(event) {
+              if (event.target == modal) {
+                  modal.style.display = "none";
+              }
+          }
+        </script>
 
         <!-- Images Gallery in TODO: Photo Grid-->
         <!-- TODO: possibly hover and show image caption instead? -->
