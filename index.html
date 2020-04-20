@@ -4,6 +4,7 @@
 
 <head>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="functions.js"></script>
   <title>CMPSC 185</title>
 </head>
 
@@ -14,7 +15,7 @@
 
   <div class="navigation-container">
     <ul class="navigation">
-      <li><a class="button" id="home" href="index.html">Home</a></li>
+      <li><a class="active-button" id="home" href="index.html">Home</a></li>
       <!-- Lionel Pix & Videos / Life Updates -->
       <li><a class="button" id="gallery" href="gallery.html">Gallery</a></li>
       <!-- SpeedChess, ThinkFast, Bankteller Screenshots/Boomberang Demos -->
@@ -27,6 +28,12 @@
   </div>
 
   <div class="page-container">
+    <button onclick="topFunction()" id="myBtn" title="Go to top">^</button>
+    <script>
+      //Get the button
+      var mybutton = document.getElementById("myBtn");
+      window.onscroll = function() {scrollFunction()};
+    </script>
     <img class="resize" src="images/bytes.png" alt="Byte Joke">
     <p class="text-body">Welcome! This site is a portfolio and created for the purpose of CMPSC185. This page is still under construction.</p>
   </div>
