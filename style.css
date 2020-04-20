@@ -176,7 +176,7 @@ h1.header {
     overflow: hidden;
 }
 
-#myBtn {
+#back-to-top {
   display: none;
   position: fixed;
   bottom: 20px;
@@ -195,7 +195,7 @@ h1.header {
   border-color:  #f1e4d3;
 }
 
-#myBtn:hover {
+#back-to-top:hover {
   border-color:  #f1e4d3;
   background-color: white;
   color:  #f1e4d3;
@@ -223,16 +223,15 @@ img.modal-image:hover {
 
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  display: none; /* Hide until clicked */
+  position: fixed;
+  z-index: 1; /* Overlay other elements on page */
+  padding-top: 100px;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Allow scrolling if needed */
   background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
 }
 
@@ -266,11 +265,6 @@ img.modal-image:hover {
   animation-duration: 0.6s;
 }
 
-/* @-webkit-keyframes zoom {
-  from {-webkit-transform:scale(0)}
-  to {-webkit-transform:scale(1)}
-} */
-
 @keyframes zoom {
   from {transform:scale(0)}
   to {transform:scale(1)}
@@ -290,7 +284,7 @@ img.modal-image:hover {
 .close:hover, .close:focus {
   color: #bbb;
   text-decoration: none;
-  cursor: pointer;
+  cursor: pointer; /* Show a clicker instead of highlighting icon */
 }
 
 /* 100% Image Width on Smaller Screens */
@@ -298,4 +292,10 @@ img.modal-image:hover {
   .modal-content {
     width: 100%;
   }
-} */
+}
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)}
+  to {-webkit-transform:scale(1)}
+}
+
+*/
