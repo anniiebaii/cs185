@@ -2,6 +2,7 @@
 
 // Scroll Detection
 function scrollFunction() {
+    var mybutton = document.getElementById("back-to-top");
     var modal = document.getElementById("myModal");
   if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
           if (modal !== null && modal.style.display !== "block")
