@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 
-class Gallery extends Component{
-    constructor(props) {
+type GalleryProps = {
+    source: any
+}
+
+type GalleryState = {
+    select: any
+}
+class Gallery extends Component<GalleryProps, GalleryState>{
+    constructor(props : GalleryProps) {
         super(props);
         this.state = {}
     }
 
     render() {
-        const { source } = this.props
         let images_list = [];
-        source.forEach((item) =>
+        this.props.source.forEach((item) =>
             images_list.push(
                 <img key={item.filename}
                      className="modal-image"
