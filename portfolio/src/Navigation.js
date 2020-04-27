@@ -4,6 +4,7 @@ import Projects from './Projects';
 import About from './About';
 import Gallery from './Gallery';
 import Home from './Home';
+import BackToTop from './BackToTop';
 
 
 type NavigationProps = {
@@ -42,6 +43,32 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
         super(props);
         this.state = {page: "home", component: undefined};
         this.changeTabs = this.changeTabs.bind(this);
+        this.scrollFunction = this.scrollFunction.bind(this);
+        window.addEventListener('scroll', this.scrollFunction);
+    }
+
+    scrollFunction() {
+        console.log("SCROLL");
+        var mybutton = document.getElementById("back-to-top");
+        // @TODO modal doesn't work here....
+        var modal = this.state.modal;
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+              if (modal !== undefined && modal.style.display !== "block")
+              {
+                  mybutton.style.display = "block";
+
+              }
+              else if (modal === undefined)
+              {
+                  mybutton.style.display = "block";
+              }
+              else
+              {
+                  mybutton.style.display = "none";
+              }
+      } else {
+        mybutton.style.display = "none";
+      }
     }
 
     changeTabs = (event : any) => {
@@ -90,6 +117,7 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
             <hr></hr>
           </div>,
           <div className="page-container" key="Body">
+            {<BackToTop/>}
             {this.state.page === "gallery" ? <Gallery source={images}/> :
             (this.state.page === "about" ? <About/> :
             (this.state.page === "projects" ? <Projects/> : <Home/>))}

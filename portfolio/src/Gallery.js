@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import BackToTop from './BackToTop.js'
+import scrollFunction from './functions.js'
 
 type GalleryProps = {
     source: any
@@ -30,7 +32,7 @@ class Gallery extends Component<GalleryProps, GalleryState>{
     }
 
     componentDidMount() {
-        // window.addEventListener("scroll", scrollFunction);
+        document.addEventListener('scroll', this.scrollFunction);
     }
 
     closeModal = (event: any) => {
@@ -72,17 +74,7 @@ class Gallery extends Component<GalleryProps, GalleryState>{
         );
         return (
             <div className="sub-page-container">
-                {/* <!-- The Modal Fragment --> */}
-
                 <h2 className="subheader">Gallery</h2>
-                {/*Back to the Top Button*/}
-                {/* ADD ONCLICK topFunction() */}
-                <button id="back-to-top" title="Go to top">^</button>
-
-                {/* TODO: The Modal Fragment */}
-                {/* <!-- Images Gallery in TODO: Photo Grid--> */}
-                {/* ADD onClick="openModal(id)" */}
-
                 {this.state.modal}
                 {images_list}
             </div>
