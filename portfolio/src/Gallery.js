@@ -30,6 +30,10 @@ class Gallery extends Component<GalleryProps, GalleryState>{
         console.log(this.state);
     }
 
+    componentDidMount() {
+        window.addEventListener("scroll", scrollFunction);
+    }
+
     closeModal = (event: any) => {
         console.log("CLOSE MODAL");
         var newModal = React.cloneElement(this.state.modal, {style: {display: "none"}});
@@ -67,22 +71,20 @@ class Gallery extends Component<GalleryProps, GalleryState>{
             )
         );
         return (
-            <div className="page-container">
-              <div className="sub-page-container">
-                  {/* <!-- The Modal Fragment --> */}
+            <div className="sub-page-container">
+                {/* <!-- The Modal Fragment --> */}
 
-                  <h2 className="subheader">Gallery</h2>
-                  {/*Back to the Top Button*/}
-                  {/* ADD ONCLICK topFunction() */}
-                  <button id="back-to-top" title="Go to top">^</button>
+                <h2 className="subheader">Gallery</h2>
+                {/*Back to the Top Button*/}
+                {/* ADD ONCLICK topFunction() */}
+                <button id="back-to-top" title="Go to top">^</button>
 
-                  {/* TODO: The Modal Fragment */}
-                  {/* <!-- Images Gallery in TODO: Photo Grid--> */}
-                  {/* ADD onClick="openModal(id)" */}
+                {/* TODO: The Modal Fragment */}
+                {/* <!-- Images Gallery in TODO: Photo Grid--> */}
+                {/* ADD onClick="openModal(id)" */}
 
-                  {this.state.modal}
-                  {images_list}
-              </div>
+                {this.state.modal}
+                {images_list}
             </div>
         )
     }

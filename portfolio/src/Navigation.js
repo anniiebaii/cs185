@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import './Navigation.css';
+import App from './App';
+import Projects from './Projects';
+import About from './About';
+import Gallery from './Gallery';
 
 type NavigationProps = {
     page: string;
@@ -9,17 +13,42 @@ type NavigationState= {
     page: string;
 };
 
+const images = [
+    {
+        filename: 'appa01.jpg',
+        caption: "Meet Appa, my German Shepherd puppy! He's named after the sky bison in Avatar the Last Air Bender. Appa is a stubborn puppy that won't let anything stop him from getting head scritches and naps on my lap."
+    },
+    {
+        filename: 'appa02.jpg',
+        caption: 'Appa'
+    },
+    {
+        filename: 'appa03.jpg',
+        caption: 'Appa getting the pets.'
+    },
+    {
+        filename: 'ucsb01.jpg',
+        caption: 'UCSB beaches are gorgeous.'
+    },
+    {
+        filename: 'ucsb02.jpg',
+        caption: 'UCSB Sunsets'
+    }
+]
+
 class Navigation extends React.Component<NavigationProps, NavigationState> {
     constructor(props: NavigationProps) {
         super(props);
-        this.state = {page: "home"};
+        this.state = {page: "home", component: undefined};
         this.changeTabs = this.changeTabs.bind(this);
     }
 
     changeTabs = (event : any) => {
         console.log(event.target.id);
         console.log(event.target);
-        this.setState({page: event.target.id});
+
+        this.setState({page: event.target.id}, this._refresh);
+
     }
 
     _refresh = (props?: NavigationProps) => {
@@ -27,15 +56,17 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
         {
             props = this.props;
         }
-    }
-
-    componentDidUpdate() {
-        this.render();
         console.log(this.state);
     }
 
-  render() {
-      return (
+    componentDidUpdate() {
+        this.render(<Gallery source={images}/>);
+        console.log(this.state);
+    }
+
+  render(component) {
+      console.log(component);
+      return ([
           <div className="navigation-container">
             <ul className="navigation">
               <li><a className={this.state.page === "home" ? "active-button" : "button" }
@@ -58,8 +89,13 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
                      href="https://github.com/anniiebaii/portfolio">Github</a></li>
             </ul>
             <hr></hr>
+          </div>,
+          <div className="page-container">
+            {this.state.page === "gallery" ? <Gallery source={images}/> :
+            (this.state.page === "about" ? <About/> :
+            (this.state.page === "projects" ? <Projects/> : <App/>))}
           </div>
-      )
+      ])
   }
 }
 
