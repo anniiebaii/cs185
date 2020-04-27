@@ -64,8 +64,7 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
         console.log(this.state);
     }
 
-  render(component) {
-      console.log(component);
+  render() {
       return ([
           <div className="navigation-container" key="TabList">
             <ul className="navigation">

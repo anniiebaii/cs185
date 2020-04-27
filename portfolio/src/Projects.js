@@ -3,15 +3,17 @@ import React from 'react';
 
 function Projects() {
   return ([
-      <div>
+      <div key="headers">
           <button id="back-to-top" title="Go to top">^</button>
           <h2 className="subheader">Projects</h2>
       </div>,
-      <h3 className="subheader_1">ThinkFast (2nd Year, 2018)</h3>,
-      <p className="text-body">
-          ThinkFast is a fun collection of brain-games that test a player's quick judgement and problem-solving skills while on a timer. As the player completes puzzles, the timer is extended, but the difficulty also increases. We currently have three mini games, which are described below.</p>,
-      <p className="text-body">To learn more about the rules of each game, read through our "ThinkFast Manual" in our <a href="https://github.com/MatthewPontarolo/ThinkFast">Github</a>. </p>,
-      <div className="sub-page-container" id="TouchMaze">
+      <div className="sub-page-container" key="ThinkFast-intro">
+          <h3 className="subheader_1">ThinkFast (2nd Year, 2018)</h3>
+          <p className="text-body">
+              ThinkFast is a fun collection of brain-games that test a player's quick judgement and problem-solving skills while on a timer. As the player completes puzzles, the timer is extended, but the difficulty also increases. We currently have three mini games, which are described below.</p>
+          <p className="text-body">To learn more about the rules of each game, read through our "ThinkFast Manual" in our <a href="https://github.com/MatthewPontarolo/ThinkFast">Github</a>. </p>
+      </div>,
+      <div className="sub-page-container" key="TouchMaze">
           <h4 className="paragraph_header">Touch Maze</h4>
           {/* Demo Video */}
           <video className="mobile-video" controls>
@@ -21,14 +23,14 @@ function Projects() {
               This minigame creates a randomly generated maze. The player has to complete the maze using the phone’s touchscreen interface, starting from the blue square and ending at the green square without lifting their finger. If the player attempts an illegal move, such as touching a wall, using multiple fingers, or starting anywhere other than the blue square, the player will have to start over. </p>
       </div>,
 
-      <div className="sub-page-container" id="CallOut">
+      <div className="sub-page-container" key="CallOut">
           <h4 className="paragraph_header">CallOut</h4>
           {/* Demo Pictures */}
           <img className="mobile-image" src={require('./images/CallOut_2.png')} alt="CallOut"></img>
           <p className="text-body">
               This minigame presents a word with half of the letters blanked out.  The player has to call out their guesses for what the word is.  The screen will indicate when the player gets it correct.  The player is also provided a category as a hint.</p>
       </div>,
-      <div className="sub-page-container" id="ShakeQ">
+      <div className="sub-page-container" key="ShakeQ">
           <h4 className="paragraph_header">ShakeQ</h4>
           {/* Demo Video */}
           <video className="mobile-video" controls>
@@ -37,7 +39,7 @@ function Projects() {
           <p className="text-body">
               This minigame shuffles through a series of random math expressions in two seconds and requires the user to perform an action when it corresponds to the indicated criteria.</p>
       </div>,
-      <div className="sub-page-container">
+      <div className="sub-page-container" key="SpeedChess">
           <h3 className="subheader_1">SpeedChess (2nd Year, 2017)</h3>
           {/* Demo Video */}
           <video className="video" controls>
