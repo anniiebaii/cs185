@@ -4,6 +4,8 @@ import App from './App';
 import Projects from './Projects';
 import About from './About';
 import Gallery from './Gallery';
+import Home from './Home';
+
 
 type NavigationProps = {
     page: string;
@@ -93,7 +95,7 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
           <div className="page-container">
             {this.state.page === "gallery" ? <Gallery source={images}/> :
             (this.state.page === "about" ? <About/> :
-            (this.state.page === "projects" ? <Projects/> : <App/>))}
+            (this.state.page === "projects" ? <Projects/> : <Home/>))}
           </div>
       ])
   }

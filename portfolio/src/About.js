@@ -3,7 +3,7 @@ import './style.css';
 
 function About() {
   return (
-      <div className="page-container">
+      <div className="sub-page-container">
       {/* ADD ONCLICK */}
           <button id="back-to-top" title="Go to top">^</button>
           <script>
