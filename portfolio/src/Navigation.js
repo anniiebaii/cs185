@@ -45,10 +45,10 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
     }
 
     changeTabs = (event : any) => {
-        console.log(event.target.key);
+        console.log(event.target.id);
         console.log(event.target);
 
-        this.setState({page: event.target.key}, this._refresh);
+        this.setState({page: event.target.id}, this._refresh);
     }
 
     _refresh = (props?: NavigationProps) => {
@@ -70,27 +70,27 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
           <div className="navigation-container" key="TabList">
             <ul className="navigation">
               <li><a className={this.state.page === "home" ? "active-button" : "button" }
-                     key="home"
+                     id="home"
                      onClick={this.changeTabs}>Home</a></li>
               {/* Lionel Pix & Videos / Life Updates */}
               <li><a className={this.state.page === "gallery" ? "active-button" : "button" }
-                     key="gallery"
+                     id="gallery"
                      onClick={this.changeTabs}>Gallery</a></li>
               {/* SpeedChess, ThinkFast, Bankteller Screenshots/Boomberang Demos */}
               <li><a className={this.state.page === "projects" ? "active-button" : "button" }
-                     key="projects"
+                     id="projects"
                      onClick={this.changeTabs}>Projects</a></li>
               {/* Intro, hobbies, next steps ==> Pic */}
               <li><a className={this.state.page === "about" ? "active-button" : "button" }
-                     key="about"
+                     id="about"
                      onClick={this.changeTabs}>About</a></li>
               <li><a className={this.state.page === "github" ? "active-button" : "button" }
-                     key="github"
+                     id="github"
                      href="https://github.com/anniiebaii/portfolio">Github</a></li>
             </ul>
             <hr></hr>
           </div>,
-          <div className="page-container" key="body">
+          <div className="page-container" key="Body">
             {this.state.page === "gallery" ? <Gallery source={images}/> :
             (this.state.page === "about" ? <About/> :
             (this.state.page === "projects" ? <Projects/> : <Home/>))}
