@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import scrollFunction from './functions.js'
 
 type GalleryProps = {
     source: any
@@ -19,7 +18,7 @@ class Gallery extends Component<GalleryProps, GalleryState>{
     }
 
     _refresh = (props?: GalleryProps) => {
-        if (props == undefined)
+        if (props === undefined)
         {
             props = this.props;
         }
@@ -31,7 +30,7 @@ class Gallery extends Component<GalleryProps, GalleryState>{
     }
 
     componentDidMount() {
-        window.addEventListener("scroll", scrollFunction);
+        // window.addEventListener("scroll", scrollFunction);
     }
 
     closeModal = (event: any) => {
@@ -51,6 +50,7 @@ class Gallery extends Component<GalleryProps, GalleryState>{
               <img className="modal-content"
                    id="modal-content"
                    src={event.target.src}
+                   alt="modal-content"
                    ></img>
               <span id="caption">{event.target.alt}</span>
             </div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Navigation.css';
-import App from './App';
 import Projects from './Projects';
 import About from './About';
 import Gallery from './Gallery';
@@ -46,15 +45,14 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
     }
 
     changeTabs = (event : any) => {
-        console.log(event.target.id);
+        console.log(event.target.key);
         console.log(event.target);
 
-        this.setState({page: event.target.id}, this._refresh);
-
+        this.setState({page: event.target.key}, this._refresh);
     }
 
     _refresh = (props?: NavigationProps) => {
-        if (props == undefined)
+        if (props === undefined)
         {
             props = this.props;
         }
@@ -69,30 +67,30 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
   render(component) {
       console.log(component);
       return ([
-          <div className="navigation-container">
+          <div className="navigation-container" key="TabList">
             <ul className="navigation">
               <li><a className={this.state.page === "home" ? "active-button" : "button" }
-                     id="home"
+                     key="home"
                      onClick={this.changeTabs}>Home</a></li>
               {/* Lionel Pix & Videos / Life Updates */}
               <li><a className={this.state.page === "gallery" ? "active-button" : "button" }
-                     id="gallery"
+                     key="gallery"
                      onClick={this.changeTabs}>Gallery</a></li>
               {/* SpeedChess, ThinkFast, Bankteller Screenshots/Boomberang Demos */}
               <li><a className={this.state.page === "projects" ? "active-button" : "button" }
-                     id="projects"
+                     key="projects"
                      onClick={this.changeTabs}>Projects</a></li>
               {/* Intro, hobbies, next steps ==> Pic */}
               <li><a className={this.state.page === "about" ? "active-button" : "button" }
-                     id="about"
+                     key="about"
                      onClick={this.changeTabs}>About</a></li>
               <li><a className={this.state.page === "github" ? "active-button" : "button" }
-                     id="github"
+                     key="github"
                      href="https://github.com/anniiebaii/portfolio">Github</a></li>
             </ul>
             <hr></hr>
           </div>,
-          <div className="page-container">
+          <div className="page-container" key="body">
             {this.state.page === "gallery" ? <Gallery source={images}/> :
             (this.state.page === "about" ? <About/> :
             (this.state.page === "projects" ? <Projects/> : <Home/>))}

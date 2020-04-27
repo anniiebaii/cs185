@@ -1,5 +1,4 @@
 import React from 'react';
-import scrollFunction from './functions.js';
 // import './Projects.css';
 
 function Projects() {
@@ -25,7 +24,7 @@ function Projects() {
       <div className="sub-page-container" id="CallOut">
           <h4 className="paragraph_header">CallOut</h4>
           {/* Demo Pictures */}
-          <img className="mobile-image" src={require('./images/CallOut_2.png')} ></img>
+          <img className="mobile-image" src={require('./images/CallOut_2.png')} alt="CallOut"></img>
           <p className="text-body">
               This minigame presents a word with half of the letters blanked out.  The player has to call out their guesses for what the word is.  The screen will indicate when the player gets it correct.  The player is also provided a category as a hint.</p>
       </div>,
