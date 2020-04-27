@@ -48,7 +48,7 @@ class Gallery extends Component<GalleryProps, GalleryState>{
                    id="modal-content"
                    src={event.target.src}
                    ></img>
-              <div id="caption"></div>
+              <span id="caption">{event.target.alt}</span>
             </div>
 
         )}, this._refresh);
