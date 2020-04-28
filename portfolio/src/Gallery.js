@@ -33,12 +33,22 @@ class Gallery extends Component<GalleryProps, GalleryState>{
 
     componentDidMount() {
         document.addEventListener('scroll', this.scrollFunction);
+        document.addEventListener('click', this.closeModal());
     }
 
     closeModal = (event: any) => {
-        console.log("CLOSE MODAL");
-        var newModal = React.cloneElement(this.state.modal, {style: {display: "none"}});
-        this.setState({modal: newModal}, this._refresh);
+        if (this.state.modal !== undefined){
+        console.log(event.target.id);
+    }
+        if (this.state.modal !== undefined &&
+            (event.target.id === "close-button" ||
+            event.target.id !== "modal-content"))
+        {
+            console.log("CLOSE MODAL");
+            var newModal = React.cloneElement(this.state.modal, {style: {display: "none"}});
+            this.setState({modal: undefined}, this._refresh);
+        }
+
         // @TODO
         // scrollFunction();
     }
@@ -48,6 +58,7 @@ class Gallery extends Component<GalleryProps, GalleryState>{
         this.setState({modal: (
             <div id="myModal" className="modal" style={{display: "block"}}>
               <span className="close"
+                    id="close-button"
                     onClick={this.closeModal}>&times;</span>
               <img className="modal-content"
                    id="modal-content"
@@ -73,7 +84,7 @@ class Gallery extends Component<GalleryProps, GalleryState>{
             )
         );
         return (
-            <div className="sub-page-container">
+            <div className="sub-page-container" onClick={this.closeModal}>
                 <h2 className="subheader">Gallery</h2>
                 {this.state.modal}
                 {images_list}
