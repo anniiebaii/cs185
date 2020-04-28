@@ -22,12 +22,16 @@ class App extends Component {
         this.render();
         console.log(this.state);
     }
+    componentDidMount() {
+        document.title = 'CMPSC 185';
+    }
 
   render() {
-      return (<div className="header">
-          <h1 className="header">annie bai</h1>
-      </div>
-    )
+      return (
+          <div className="header">
+            <h1 className="header">annie bai</h1>
+          </div>
+  )
   }
 }
 
