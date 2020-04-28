@@ -1,0 +1,73 @@
+ul {
+  list-style-type: none;
+  margin: auto;
+  padding: auto;
+  text-align: center;
+  /* margin-block-start: auto;
+  margin-block-end: auto;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  /* padding-inline-start: auto; */
+  /* margin-left: auto;
+  margin-right:auto; */
+  /* width: 60%; */
+}
+
+li {
+  float: left;
+  margin: auto;
+}
+
+li a {
+  display: block;
+  color: #2d4829;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  overflow: display;
+}
+/* TODO: keep link colored when selected */
+li a:hover:not(.active) {
+  background-color: #f1e4d3;
+}
+
+li a:active {
+  background-color: #f1e4d3;
+}
+
+hr {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 1.2px;
+  width: 100%;
+  background-color:#666;
+  opacity: 0.5;
+}
+
+.active {
+  background-color: #f1e4d3;
+}
+
+.active-button {
+  background-color: #f1e4d3;
+  text-decoration:underline;
+}
+
+.navigation-container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  padding-bottom: 10px;
+
+}
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+
+}
