@@ -23,7 +23,7 @@ function About() {
           <p className="text-body">
           I have two years of industry experience from my backend engineering internship with Ontraport.
           My career interests include software engineering, with an emphasis on web security and web development.
-          You can find more about my skillset and previous experiences in my <a href="files/Resume.pdf">resume</a>. </p>
+          You can find more about my skillset and previous experiences in my <a href={require("./files/Resume.pdf")}>resume</a>. </p>
       </div>
 
 

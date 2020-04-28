@@ -17,29 +17,6 @@ class Projects extends Component {
     componentDidMount() {
     }
 
-    scrollFunction() {
-        console.log("SCROLL");
-        var mybutton = document.getElementById("back-to-top");
-        var modal = this.state.modal;
-        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-              if (modal !== undefined && modal.style.display !== "block")
-              {
-                  mybutton.style.display = "block";
-
-              }
-              else if (modal === undefined)
-              {
-                  mybutton.style.display = "block";
-              }
-              else
-              {
-                  mybutton.style.display = "none";
-              }
-      } else {
-        mybutton.style.display = "none";
-      }
-    }
-
     render() {
       return ([
           <div key="headers">

@@ -37,9 +37,10 @@ class Gallery extends Component<GalleryProps, GalleryState>{
     }
 
     closeModal = (event: any) => {
-        if (this.state.modal !== undefined){
-        console.log(event.target.id);
-    }
+        if (this.state.modal !== undefined)
+        {
+            console.log(event.target.id);
+        }
         if (this.state.modal !== undefined &&
             (event.target.id === "close-button" ||
             event.target.id !== "modal-content"))
@@ -48,9 +49,6 @@ class Gallery extends Component<GalleryProps, GalleryState>{
             var newModal = React.cloneElement(this.state.modal, {style: {display: "none"}});
             this.setState({modal: undefined}, this._refresh);
         }
-
-        // @TODO
-        // scrollFunction();
     }
 
     openModal = (event : any) => {
