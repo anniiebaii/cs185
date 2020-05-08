@@ -5,6 +5,7 @@ import About from './About';
 import Gallery from './Gallery';
 import Home from './Home';
 import BackToTop from './BackToTop';
+import GuestBook from './GuestBook';
 
 
 type NavigationProps = {
@@ -38,7 +39,7 @@ const images = [
     }
 ]
 
-class Navigation extends React.Component<NavigationProps, NavigationState> {
+class Navigation extends Component<NavigationProps, NavigationState> {
     constructor(props: NavigationProps) {
         super(props);
         this.state = {page: "home", component: undefined};
@@ -107,6 +108,9 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
                      id="projects"
                      onClick={this.changeTabs}>Projects</a></li>
               {/* Intro, hobbies, next steps ==> Pic */}
+              <li><a className={this.state.page === "guest_book" ? "active-button" : "button" }
+                     id="guest_book"
+                     onClick={this.changeTabs}>Guest Book</a></li>
               <li><a className={this.state.page === "about" ? "active-button" : "button" }
                      id="about"
                      onClick={this.changeTabs}>About</a></li>
@@ -120,7 +124,8 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
             {<BackToTop/>}
             {this.state.page === "gallery" ? <Gallery source={images}/> :
             (this.state.page === "about" ? <About/> :
-            (this.state.page === "projects" ? <Projects/> : <Home/>))}
+            (this.state.page === "projects" ? <Projects/> :
+            (this.state.page === "guest_book" ? <GuestBook/> : <Home/>)))}
           </div>
       ])
   }

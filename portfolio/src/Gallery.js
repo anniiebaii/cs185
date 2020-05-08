@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import BackToTop from './BackToTop.js'
 import scrollFunction from './functions.js'
 
 type GalleryProps = {
@@ -32,7 +31,7 @@ class Gallery extends Component<GalleryProps, GalleryState>{
     }
 
     componentDidMount() {
-        document.addEventListener('scroll', this.scrollFunction);
+        document.addEventListener('scroll', scrollFunction);
         document.addEventListener('click', this.closeModal());
     }
 
@@ -46,7 +45,7 @@ class Gallery extends Component<GalleryProps, GalleryState>{
             event.target.id !== "modal-content"))
         {
             console.log("CLOSE MODAL");
-            var newModal = React.cloneElement(this.state.modal, {style: {display: "none"}});
+            // var newModal = React.cloneElement(this.state.modal, {style: {display: "none"}});
             this.setState({modal: undefined}, this._refresh);
         }
     }
