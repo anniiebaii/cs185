@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import scrollFunction from './functions.js'
 
 type GalleryProps = {
     source: any
@@ -31,7 +30,7 @@ class Gallery extends Component<GalleryProps, GalleryState>{
     }
 
     componentDidMount() {
-        document.addEventListener('scroll', scrollFunction);
+        // document.addEventListener('scroll', scrollFunction);
         document.addEventListener('click', this.closeModal());
     }
 

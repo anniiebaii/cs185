@@ -1,6 +1,20 @@
 .guest-book-display {
     float: right;
-    /* width: 60%; */
+    width: 40%;
+    padding-left: 100px;
+
+}
+
+.guest-book-body {
+    border-color: #d3d3d3;
+    border: 1px solid #d3d3d3;
+    margin: 0px;
+    padding: 10px;
+}
+
+.guest-book-name {
+    padding: 10px;
+    margin: 5px;
 }
 
 .guest-form {

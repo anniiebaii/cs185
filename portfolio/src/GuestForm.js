@@ -36,7 +36,7 @@ class GuestForm extends Component<GuestFormProps, GuestFormState>
           console.log(field + " = " + val);
           returnObj[field] = val;
              return returnObj;
-        }.bind(event)();
+        }();
 
         this.setState( stateObject);
     }
