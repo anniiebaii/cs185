@@ -80,17 +80,19 @@ class Navigation extends Component<NavigationProps, NavigationState> {
     }
 
     _refresh = (props?: NavigationProps) => {
-        if (props === undefined)
-        {
-            props = this.props;
-        }
-        console.log(this.state);
+        // console.log("refre");
+        // if (props === undefined)
+        // {
+        //     props = this.props;
+        // }
+        // console.log(this.state);
     }
 
-    componentDidUpdate() {
-        this.render(<Gallery source={images}/>);
-        console.log(this.state);
-    }
+    // componentDidUpdate() {
+    //     console.log("uodate")
+    //     this.render(<Gallery source={images}/>);
+    //     console.log(this.state);
+    // }
 
   render() {
       return ([
@@ -107,10 +109,11 @@ class Navigation extends Component<NavigationProps, NavigationState> {
               <li><a className={this.state.page === "projects" ? "active-button" : "button" }
                      id="projects"
                      onClick={this.changeTabs}>Projects</a></li>
-              {/* Intro, hobbies, next steps ==> Pic */}
+              {/* Assignmnent 5 */}
               <li><a className={this.state.page === "guest_book" ? "active-button" : "button" }
                      id="guest_book"
                      onClick={this.changeTabs}>Guest Book</a></li>
+              {/* Intro, hobbies, next steps ==> Pic */}
               <li><a className={this.state.page === "about" ? "active-button" : "button" }
                      id="about"
                      onClick={this.changeTabs}>About</a></li>

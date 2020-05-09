@@ -1,13 +1,11 @@
 import React, {Component} from 'react'
 import './App.css';
+import './GuestBook.css';
 
 class App extends Component {
     changeTabs = (event : any) => {
         console.log(event.target.id);
         console.log(event.target);
-
-        this.setState({page: event.target.id}, this._refresh);
-
     }
 
     _refresh = (props?: NavigationProps) => {
@@ -18,10 +16,10 @@ class App extends Component {
         console.log(this.state);
     }
 
-    componentDidUpdate() {
-        this.render();
-        console.log(this.state);
-    }
+    // componentDidUpdate() {
+    //     // this.render();
+    //     // console.log(this.state);
+    // }
     componentDidMount() {
         document.title = 'CMPSC 185';
     }
