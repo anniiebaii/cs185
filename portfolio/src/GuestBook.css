@@ -1,0 +1,76 @@
+.guest-book-display {
+    float: right;
+    width: 40%;
+    padding-left: 100px;
+
+}
+
+.guest-book-body {
+    border-color: #d3d3d3;
+    border: 1px solid #d3d3d3;
+    margin: 0px;
+    padding: 10px;
+}
+
+.guest-book-name {
+    padding: 10px;
+    margin: 5px;
+}
+
+.guest-form {
+    float: left;
+    width: 40%;
+}
+
+/* Style inputs */
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: "Lucida Console", Courier, monospace;
+
+}
+
+input[type=checkbox] {
+  padding: 20px 20px;
+  padding-left: 10px;
+  margin: 8px 10px;
+  /* display: inline-block; */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: "Lucida Console", Courier, monospace;
+
+}
+
+/* Style the submit button */
+input[type=submit] {
+  width: 100%;
+  background-color: #d3d3d3;
+  color: #2d4829;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: "Lucida Console", Courier, monospace;
+}
+
+/* Add a background color to the submit button on mouse-over */
+input[type=submit]:hover {
+  background-color: #f1e4d3;
+}
+
+
+label {
+    width: 100%;
+    display: inline-block;
+    padding: 5px;
+
+}

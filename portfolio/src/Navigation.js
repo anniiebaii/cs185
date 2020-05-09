@@ -5,6 +5,7 @@ import About from './About';
 import Gallery from './Gallery';
 import Home from './Home';
 import BackToTop from './BackToTop';
+import GuestBook from './GuestBook';
 
 
 type NavigationProps = {
@@ -38,7 +39,7 @@ const images = [
     }
 ]
 
-class Navigation extends React.Component<NavigationProps, NavigationState> {
+class Navigation extends Component<NavigationProps, NavigationState> {
     constructor(props: NavigationProps) {
         super(props);
         this.state = {page: "home", component: undefined};
@@ -83,7 +84,6 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
         {
             props = this.props;
         }
-        console.log(this.state);
     }
 
     componentDidUpdate() {
@@ -97,19 +97,28 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
             <ul className="navigation">
               <li><a className={this.state.page === "home" ? "active-button" : "button" }
                      id="home"
-                     onClick={this.changeTabs}>Home</a></li>
+                     onClick={this.changeTabs}
+                     href="#">Home</a></li>
               {/* Lionel Pix & Videos / Life Updates */}
               <li><a className={this.state.page === "gallery" ? "active-button" : "button" }
                      id="gallery"
-                     onClick={this.changeTabs}>Gallery</a></li>
+                     onClick={this.changeTabs}
+                     href="#">Gallery</a></li>
               {/* SpeedChess, ThinkFast, Bankteller Screenshots/Boomberang Demos */}
               <li><a className={this.state.page === "projects" ? "active-button" : "button" }
                      id="projects"
-                     onClick={this.changeTabs}>Projects</a></li>
+                     onClick={this.changeTabs}
+                     href="#">Projects</a></li>
+              {/* Assignmnent 5 */}
+              <li><a className={this.state.page === "guest_book" ? "active-button" : "button" }
+                     id="guest_book"
+                     onClick={this.changeTabs}
+                     href="#">Guest Book</a></li>
               {/* Intro, hobbies, next steps ==> Pic */}
               <li><a className={this.state.page === "about" ? "active-button" : "button" }
                      id="about"
-                     onClick={this.changeTabs}>About</a></li>
+                     onClick={this.changeTabs}
+                     href="javascript:void(0);">About</a></li>
               <li><a className={this.state.page === "github" ? "active-button" : "button" }
                      id="github"
                      href="https://github.com/anniiebaii/portfolio">Github</a></li>
@@ -120,7 +129,8 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
             {<BackToTop/>}
             {this.state.page === "gallery" ? <Gallery source={images}/> :
             (this.state.page === "about" ? <About/> :
-            (this.state.page === "projects" ? <Projects/> : <Home/>))}
+            (this.state.page === "projects" ? <Projects/> :
+            (this.state.page === "guest_book" ? <GuestBook/> : <Home/>)))}
           </div>
       ])
   }
