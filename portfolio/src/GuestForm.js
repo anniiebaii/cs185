@@ -29,7 +29,7 @@ class GuestForm extends Component<GuestFormProps, GuestFormState>
 
     handleChange = (event) => {
         const field = event.target.id;
-        var val = field === "anon" ? !event.target.checked : event.target.value;
+        var val = field === "anon" ? event.target.checked : event.target.value;
 
         var stateObject = function() {
           var returnObj = {};
