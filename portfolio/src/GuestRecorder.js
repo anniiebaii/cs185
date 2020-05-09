@@ -67,14 +67,8 @@ function GuestRecorder() {
                         {name}
                     </p>
             ))
-
         }
-
-
-
-
         </div>
-
     )
 
 }

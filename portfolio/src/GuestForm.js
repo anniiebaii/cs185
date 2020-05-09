@@ -6,6 +6,11 @@ type GuestFormProps = {
 }
 
 type GuestFormState = {
+    name: string;
+    bio: string;
+    message: string;
+    anon: bool;
+    email: string;
 }
 
 class GuestForm extends Component<GuestFormProps, GuestFormState>
@@ -13,12 +18,32 @@ class GuestForm extends Component<GuestFormProps, GuestFormState>
     constructor(props)
     {
         super(props);
-        // this.state = {callBack: this.props.callBack}
+        this.state = {name: "", bio: "", message: "", anon: false, email: ""};
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange = (event) => {
+    _refresh()
+    {
 
+    }
+
+    handleChange = (event) => {
+        const field = event.target.id;
+        var val = field === "anon" ? !event.target.checked : event.target.value;
+
+        var stateObject = function() {
+          var returnObj = {};
+          console.log(field + " = " + val);
+          returnObj[field] = val;
+             return returnObj;
+        }.bind(event)();
+
+        this.setState( stateObject);
+    }
+
+    componentDidUpdate()
+    {
+        console.log(this.state);
     }
 
     render()
@@ -27,23 +52,23 @@ class GuestForm extends Component<GuestFormProps, GuestFormState>
             <form className="guest-form" onSubmit={this.props.callBack}>
                 <label key="name">
                     Name:
-                    <input type="text" value={""} onChange={this.handleChange}/>
+                    <input id="name" type="text" value={this.state.name} onChange={this.handleChange}/>
                 </label>
                 <label key="bio">
                     Bio:
-                    <input type="text" value={""} onChange={this.handleChange}/>
+                    <input id="bio" type="text" value={this.state.bio} onChange={this.handleChange}/>
                 </label>
                 <label key="message">
                     Message:
-                    <input type="text" value={""} onChange={this.handleChange}/>
+                    <input id="message" type="text" value={this.state.message} onChange={this.handleChange}/>
                 </label>
-                <label key="anon">
+                <label key="anon" id="anon">
                     Anonymous:
-                    <input type="text" value={""} onChange={this.handleChange}/>
+                    <input id = "anon" type="checkbox" value={this.state.anon} onChange={this.handleChange}/>
                 </label>
                 <label key="email">
                     Email:
-                    <input type="text" value={""} onChange={this.handleChange}/>
+                    <input id="email" type="text" value={this.state.email} onChange={this.handleChange}/>
                 </label>
                 <input type="submit" value="Submit"/>
             </form>

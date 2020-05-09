@@ -80,19 +80,16 @@ class Navigation extends Component<NavigationProps, NavigationState> {
     }
 
     _refresh = (props?: NavigationProps) => {
-        // console.log("refre");
-        // if (props === undefined)
-        // {
-        //     props = this.props;
-        // }
-        // console.log(this.state);
+        if (props === undefined)
+        {
+            props = this.props;
+        }
     }
 
-    // componentDidUpdate() {
-    //     console.log("uodate")
-    //     this.render(<Gallery source={images}/>);
-    //     console.log(this.state);
-    // }
+    componentDidUpdate() {
+        this.render(<Gallery source={images}/>);
+        console.log(this.state);
+    }
 
   render() {
       return ([
