@@ -31,6 +31,9 @@ input[type=text], select {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  font-size: 16px;
+  font-family: "Lucida Console", Courier, monospace;
+
 }
 
 input[type=checkbox] {
@@ -41,6 +44,9 @@ input[type=checkbox] {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  font-size: 16px;
+  font-family: "Lucida Console", Courier, monospace;
+
 }
 
 /* Style the submit button */
@@ -60,6 +66,7 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #f1e4d3;
 }
+
 
 label {
     width: 100%;
