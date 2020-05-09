@@ -24,23 +24,6 @@ function GuestRecorder(props) {
     // 3. Render GuestForm -- onSubmit always pass into (1)
     //
 
-    // @TODO submit data to firebase
-    function updateBook()
-    {
-        console.log("updateBook");
-        if (!firebase.apps.length) {
-           firebase.initializeApp(config)
-        }
-        var test = {name:"Ying", message: "yur", anon: false}
-        var jsonBody = JSON.stringify(test);
-        // Send Data to Firebase
-        firebase.database().ref('GuestBook').push().set(jsonBody)
-        // setShouldRender(!shouldRender) //-- run when submitting to form
-
-        info = "";
-
-    }
-
 
     // callback function for useEffect
     // basically runs the callback when shouldRender changes
@@ -62,10 +45,12 @@ function GuestRecorder(props) {
              //set your apps state to contain this data however you like
              // const state = snapshot.val()
              snapshot.forEach(function (childSnapshot) {
-                 console.log(childSnapshot.val().anon);
-                 if (childSnapshot.val().anon === false)
+                 console.log(childSnapshot.val());
+                 var value = JSON.parse(childSnapshot.val());
+                 console.log(value["anon"]);
+                 if (value["anon"] === false)
                  {
-                     dataSet.push(childSnapshot.val());
+                     dataSet.push(value);
                  }
              });
              console.log(dataSet);
@@ -79,9 +64,9 @@ function GuestRecorder(props) {
         {
             data.map((item, index) => (
                 <div key={item} className="guest-book-content">
-                    <h3 className="guest-book-name">{item.name} <br></br>{item.bio}</h3>
+                    <h3 className="guest-book-name">{item["name"]} <br></br>{item["bio"]}</h3>
                     <p key = {index} className="guest-book-body">
-                            {item.message}</p>
+                            {item["message"]}</p>
                 </div>
 
             ))

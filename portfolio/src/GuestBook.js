@@ -46,10 +46,21 @@ class GuestBook extends Component {
     }
 
 
+
     handleSubmit = (event) => {
         // @TODO give submission to GuestRecorder
         console.log("submit");
         console.log(event.target);
+
+        // const firebase = require('firebase');
+        //
+        // if (!firebase.apps.length) {
+        //    firebase.initializeApp(config)
+        // }
+        // var test = {name:"Ying", message: "yur", anon: false}
+        // var jsonBody = JSON.stringify(test);
+        // // Send Data to Firebase
+        // firebase.database().ref('GuestBook').push().set(jsonBody)
     }
 
   render() {
