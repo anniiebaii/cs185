@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import './GuestBook.css'
+import config from './config.js'
+
 
 type GuestFormProps = {
     callBack: EventListener
@@ -20,6 +22,8 @@ class GuestForm extends Component<GuestFormProps, GuestFormState>
         super(props);
         this.state = {name: "", bio: "", message: "", anon: false, email: ""};
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+
     }
 
     _refresh()
@@ -41,6 +45,21 @@ class GuestForm extends Component<GuestFormProps, GuestFormState>
         this.setState( stateObject);
     }
 
+    handleSubmit = (event) => {
+
+        const firebase = require('firebase');
+
+        if (!firebase.apps.length) {
+           firebase.initializeApp(config)
+        }
+        var test = {name:"Ying", message: "yur", anon: false}
+        var jsonBody = JSON.stringify(this.state);
+        // Send Data to Firebase
+        firebase.database().ref('GuestBook').push().set(jsonBody)
+
+        this.setState({name: "", bio: "", message: "", anon: false, email: ""});
+    }
+
     componentDidUpdate()
     {
         console.log(this.state);
@@ -49,7 +68,7 @@ class GuestForm extends Component<GuestFormProps, GuestFormState>
     render()
     {
         return (
-            <form className="guest-form" onSubmit={this.props.callBack}>
+            <form className="guest-form" onSubmit={this.handleSubmit}>
                 <label key="name">
                     Name:
                     <input id="name" type="text" value={this.state.name} onChange={this.handleChange}/>
