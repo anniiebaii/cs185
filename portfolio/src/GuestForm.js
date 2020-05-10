@@ -57,7 +57,9 @@ class GuestForm extends Component<GuestFormProps, GuestFormState>
         // Send Data to Firebase
         firebase.database().ref('GuestBook').push().set(jsonBody)
 
+        this.props.callBack();
         this.setState({name: "", bio: "", message: "", anon: false, email: ""});
+
     }
 
     componentDidUpdate()
