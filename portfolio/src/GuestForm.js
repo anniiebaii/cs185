@@ -49,16 +49,25 @@ class GuestForm extends Component<GuestFormProps, GuestFormState>
 
         const firebase = require('firebase');
 
-        if (!firebase.apps.length) {
-           firebase.initializeApp(config)
+        if (this.state.name === "" || this.state.message === "")
+        {
+            alert("Name or Message cannot be empty!");
         }
-        var test = {name:"Ying", message: "yur", anon: false}
-        var jsonBody = JSON.stringify(this.state);
-        // Send Data to Firebase
-        firebase.database().ref('GuestBook').push().set(jsonBody)
+        else
+        {
+            if (!firebase.apps.length) {
+               firebase.initializeApp(config)
+            }
 
-        this.props.callBack();
-        this.setState({name: "", bio: "", message: "", anon: false, email: ""});
+            var test = {name:"Ying", message: "yur", anon: false}
+            var jsonBody = JSON.stringify(this.state);
+            // Send Data to Firebase
+            firebase.database().ref('GuestBook').push().set(jsonBody)
+            this.props.callBack();
+            alert("Submission Sucessful");
+
+            this.setState({name: "", bio: "", message: "", anon: false, email: ""});
+        }
 
     }
 
