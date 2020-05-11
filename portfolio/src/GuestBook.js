@@ -50,7 +50,7 @@ class GuestBook extends Component {
     handleSubmit = (event) => {
         // @TODO give submission to GuestRecorder
         console.log("submit");
-        console.log(event.target);
+        // console.log(event.target);
 
         // const firebase = require('firebase');
         //
@@ -61,17 +61,19 @@ class GuestBook extends Component {
         // var jsonBody = JSON.stringify(test);
         // // Send Data to Firebase
         // firebase.database().ref('GuestBook').push().set(jsonBody)
+        this.render();
     }
 
   render() {
+      console.log("render");
       let dataSet = this.retrieveData();
-      console.log(dataSet);
+      // console.log(dataSet);
 
       const dataElements =  dataSet.map((item, index) =>
                               <p key = {index}>
                                       {item.name}, {item.message}
                               </p>);
-      console.log(dataElements);
+      // console.log(dataElements);
       return ([
           <GuestRecorder/>,
           <GuestForm key="form" callBack={this.handleSubmit}/>

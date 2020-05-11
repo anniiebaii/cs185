@@ -1,7 +1,9 @@
 .guest-book-display {
     float: right;
     width: 40%;
+    height: 450px;
     padding-left: 100px;
+    overflow-y: scroll;
 
 }
 
@@ -20,6 +22,7 @@
 .guest-form {
     float: left;
     width: 40%;
+    height: 100%;
 }
 
 /* Style inputs */
