@@ -55,7 +55,6 @@ class Gallery extends Component{
 
     openModal = (event : any) => {
         console.log("CLICKED MODAL");
-        console.log(this.props);
         this.props.openModalCallback();
         this.setState({modal: (
             <div id="myModal" className="modal" style={{display: "block"}}>
@@ -75,6 +74,7 @@ class Gallery extends Component{
 
     render() {
         let images_list = [];
+        console.log(this.props.source);
         this.props.source.forEach((item) =>
             images_list.push(
                 <img key={item.filename}
@@ -84,7 +84,9 @@ class Gallery extends Component{
                      onClick={this.openModal}
                    ></img>
             )
+            // console.log(item)
         );
+        console.log(images_list);
         return (
             <div className="sub-page-container" onClick={this.closeModal}>
                 <h2 className="subheader">Gallery</h2>

@@ -6,7 +6,7 @@ import Gallery from './Gallery';
 import Home from './Home';
 import BackToTop from './BackToTop';
 import GuestBook from './GuestBook';
-import Movies from './Movies';
+import retrieveMovieInfo from './Movies';
 
 
 type NavigationProps = {
@@ -39,6 +39,8 @@ const images = [
         caption: 'UCSB Sunsets'
     }
 ]
+
+var movies_list = retrieveMovieInfo();
 
 class Navigation extends Component<NavigationProps, NavigationState> {
     constructor(props: NavigationProps) {
@@ -94,15 +96,14 @@ class Navigation extends Component<NavigationProps, NavigationState> {
             props = this.props;
         }
         console.log(this.state);
-
     }
 
     componentDidUpdate() {
-        this.render(<Gallery source={images}/>);
         console.log(this.state);
     }
 
   render() {
+      console.log("NAv render")
       return ([
           <div className="navigation-container" key="TabList">
             <ul className="navigation">
@@ -146,7 +147,7 @@ class Navigation extends Component<NavigationProps, NavigationState> {
             (this.state.page === "about" ? <About/> :
             (this.state.page === "projects" ? <Projects/> :
             (this.state.page === "guest_book" ? <GuestBook/> :
-            (this.state.page === "movies" ? <Movies openModalCallback={this.disableScroll} closeModalCallback={this.enableScroll} /> : <Home/>))))}
+            (this.state.page === "movies" ? <Gallery source={movies_list} local={false} openModalCallback={this.disableScroll} closeModalCallback={this.enableScroll}/> : <Home/>))))}
           </div>
       ])
   }

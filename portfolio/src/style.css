@@ -168,6 +168,7 @@ img.modal-image:hover {
   display: block;
   width: auto;
   height: auto;
+  min-height: 70%;
   max-width: 80%;
   max-height: 80%;
 }
