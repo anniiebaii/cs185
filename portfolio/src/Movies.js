@@ -17,15 +17,15 @@ function retrieveMovieInfo()
     // imdbRating
     // caption = title, director \n IMDB rating
 
-    movies.map( (movies) => {
-        codes.push(movies.Code);
-        axios.get('http://www.omdbapi.com/?apikey=d7201b9b&i=' + movies.Code)
+    movies.map( (code) => {
+        codes.push(code);
+        axios.get('http://www.omdbapi.com/?apikey=d7201b9b&i=' + code)
           .then(function (response) {
             // handle success
             // console.log(response);
             var item = {};
             item["filename"] = response.data.Poster;
-            item["caption"] = response.data.Title + ", " + response.data.Director + ", IMDB Rating: " + response.data.imdbRating;
+            item["caption"] = response.data.Title + " | Director(s): " + response.data.Director + " | IMDB Rating: " + response.data.imdbRating;
             list.push(item);
           })
           .catch(function (error) {

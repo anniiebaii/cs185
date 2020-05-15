@@ -74,7 +74,6 @@ class Gallery extends Component{
 
     render() {
         let images_list = [];
-        console.log(this.props.source);
         this.props.source.forEach((item) =>
             images_list.push(
                 <img key={item.filename}
@@ -86,7 +85,6 @@ class Gallery extends Component{
             )
             // console.log(item)
         );
-        console.log(images_list);
         return (
             <div className="sub-page-container" onClick={this.closeModal}>
                 <h2 className="subheader">Gallery</h2>

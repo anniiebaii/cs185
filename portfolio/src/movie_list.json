@@ -1,35 +1,10 @@
 [
-    {
-           "Title" : "Frozen 2",
-	       "Code": "tt4520988"
-    },
-    {
-            "Title": "Ratatouille",
-            "Code": "tt0382932"
-    },
-    {
-            "Title": "Moana",
-            "Code": "tt3521164"
-    },
-    {
-            "Title": "Despicable Me",
-            "Code": "tt1323594"
-    },
-    {
-            "Title": "Up",
-            "Code": "tt1049413"
-    },
-    {
-            "Title": "Mulan",
-            "Code": "tt0120762"
-    },
-    {
-            "Title": "Lion King",
-            "Code": "tt0110357"
-    },
-    {
-            "Title": "Tangled",
-            "Code": "tt0398286"
-
-    }
+    "tt4520988",
+    "tt0382932",
+    "tt3521164",
+    "tt1323594",
+    "tt1049413",
+    "tt0120762",
+    "tt0110357",
+    "tt0398286"
 ]
