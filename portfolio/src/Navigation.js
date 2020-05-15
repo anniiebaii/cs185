@@ -6,6 +6,7 @@ import Gallery from './Gallery';
 import Home from './Home';
 import BackToTop from './BackToTop';
 import GuestBook from './GuestBook';
+import Movies from './Movies';
 
 
 type NavigationProps = {
@@ -42,34 +43,42 @@ const images = [
 class Navigation extends Component<NavigationProps, NavigationState> {
     constructor(props: NavigationProps) {
         super(props);
-        this.state = {page: "home", component: undefined};
+        console.log("contruct");
+        this.state = {page: "home", component: undefined, disableScroll: false};
         this.changeTabs = this.changeTabs.bind(this);
         this.scrollFunction = this.scrollFunction.bind(this);
+        this.disableScroll = this.disableScroll.bind(this);
+        this.enableScroll = this.enableScroll.bind(this);
         window.addEventListener('scroll', this.scrollFunction);
+        this.scroll = true;
     }
+
 
     scrollFunction() {
         console.log("SCROLL");
         var mybutton = document.getElementById("back-to-top");
-        // @TODO modal doesn't work here....
-        var modal = this.state.modal;
         if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-              if (modal !== undefined && modal.style.display !== "block")
-              {
-                  mybutton.style.display = "block";
+            if (this.scroll === false)
+            {
+                mybutton.style.display = "block"
+            }
+        }
+        else
+        {
+            mybutton.style.display = "none";
+        }
+    }
 
-              }
-              else if (modal === undefined)
-              {
-                  mybutton.style.display = "block";
-              }
-              else
-              {
-                  mybutton.style.display = "none";
-              }
-      } else {
-        mybutton.style.display = "none";
-      }
+    disableScroll() {
+        console.log("disable");
+        // this.setState({disableScroll: true}, this._refresh);
+        this.scroll = false;
+    }
+
+    enableScroll() {
+        console.log("enable");
+        // this.setState({disableScroll: false});
+        this.scroll = true;
     }
 
     changeTabs = (event : any) => {
@@ -84,6 +93,8 @@ class Navigation extends Component<NavigationProps, NavigationState> {
         {
             props = this.props;
         }
+        console.log(this.state);
+
     }
 
     componentDidUpdate() {
@@ -114,6 +125,10 @@ class Navigation extends Component<NavigationProps, NavigationState> {
                      id="guest_book"
                      onClick={this.changeTabs}
                      href="#">Guest Book</a></li>
+             <li><a className={this.state.page === "movies" ? "active-button" : "button" }
+                    id="movies"
+                    onClick={this.changeTabs}
+                    href="#">Movies</a></li>
               {/* Intro, hobbies, next steps ==> Pic */}
               <li><a className={this.state.page === "about" ? "active-button" : "button" }
                      id="about"
@@ -127,10 +142,11 @@ class Navigation extends Component<NavigationProps, NavigationState> {
           </div>,
           <div className="page-container" key="Body">
             {<BackToTop/>}
-            {this.state.page === "gallery" ? <Gallery source={images}/> :
+            {this.state.page === "gallery" ? <Gallery source={images} local={true} openModalCallback={this.disableScroll} closeModalCallback={this.enableScroll}/> :
             (this.state.page === "about" ? <About/> :
             (this.state.page === "projects" ? <Projects/> :
-            (this.state.page === "guest_book" ? <GuestBook/> : <Home/>)))}
+            (this.state.page === "guest_book" ? <GuestBook/> :
+            (this.state.page === "movies" ? <Movies openModalCallback={this.disableScroll} closeModalCallback={this.enableScroll} /> : <Home/>))))}
           </div>
       ])
   }
