@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
 
 type GalleryProps = {
-    source: any
+    source: any;
+    closeModalCallback: any;
+    openModalCallback: any;
 }
 
 type GalleryState = {
     select: any
 }
-class Gallery extends Component<GalleryProps, GalleryState>{
-    constructor(props : GalleryProps) {
+class Gallery extends Component{
+    constructor(props) {
         super(props);
+        console.log(props);
         this.state = {selected: undefined,
                       caption: undefined,
                       modal: undefined}
@@ -25,12 +28,11 @@ class Gallery extends Component<GalleryProps, GalleryState>{
     }
 
     componentDidUpdate() {
-        this.render();
+        // this.render();
         console.log(this.state);
     }
 
     componentDidMount() {
-        // document.addEventListener('scroll', scrollFunction);
         document.addEventListener('click', this.closeModal());
     }
 
@@ -45,12 +47,14 @@ class Gallery extends Component<GalleryProps, GalleryState>{
         {
             console.log("CLOSE MODAL");
             // var newModal = React.cloneElement(this.state.modal, {style: {display: "none"}});
+            this.props.closeModalCallback();
             this.setState({modal: undefined}, this._refresh);
         }
     }
 
     openModal = (event : any) => {
         console.log("CLICKED MODAL");
+        this.props.openModalCallback();
         this.setState({modal: (
             <div id="myModal" className="modal" style={{display: "block"}}>
               <span className="close"
@@ -73,11 +77,12 @@ class Gallery extends Component<GalleryProps, GalleryState>{
             images_list.push(
                 <img key={item.filename}
                      className="modal-image"
-                     src={require('./images/'+item.filename)}
+                     src={ this.props.local === true ? require('./images/'+item.filename) : item.filename}
                      alt={item.caption}
                      onClick={this.openModal}
                    ></img>
             )
+            // console.log(item)
         );
         return (
             <div className="sub-page-container" onClick={this.closeModal}>
