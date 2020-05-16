@@ -19,7 +19,7 @@ function retrieveMovieInfo()
 
     movies.map( (code) => {
         codes.push(code);
-        axios.get('http://www.omdbapi.com/?apikey=d7201b9b&i=' + code)
+        axios.get('https://www.omdbapi.com/?apikey=d7201b9b&i=' + code)
           .then(function (response) {
             // handle success
             // console.log(response);
