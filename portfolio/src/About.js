@@ -4,15 +4,7 @@ import './style.css';
 function About() {
   return (
       <div className="sub-page-container">
-      {/* ADD ONCLICK */}
           <button id="back-to-top" title="Go to top">^</button>
-          <script>
-            {/*
-            //Get the button
-            var mybutton = document.getElementById("back-to-top");
-            window.onscroll = function() {scrollFunction()};
-            */}
-          </script>
           <h2 className="subheader">About Me</h2>
           <img className="image" src={require('./images/Me.JPG')} alt="Me"></img>
           <p className="text-body">

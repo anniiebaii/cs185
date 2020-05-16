@@ -52,18 +52,15 @@ class Navigation extends Component<NavigationProps, NavigationState> {
         this.disableScroll = this.disableScroll.bind(this);
         this.enableScroll = this.enableScroll.bind(this);
         window.addEventListener('scroll', this.scrollFunction);
-        this.scroll = true;
+        this.scrollPosition = 0;
     }
 
-
     scrollFunction() {
-        console.log("SCROLL");
         var mybutton = document.getElementById("back-to-top");
+        // this.scrollPosition = document.documentElement.scrollTop;
+        // console.log(this.scrollPosition);
         if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-            if (this.scroll === false)
-            {
-                mybutton.style.display = "block"
-            }
+            mybutton.style.display = "block"
         }
         else
         {
@@ -73,14 +70,25 @@ class Navigation extends Component<NavigationProps, NavigationState> {
 
     disableScroll() {
         console.log("disable");
-        // this.setState({disableScroll: true}, this._refresh);
-        this.scroll = false;
+        this.scrollPosition = document.documentElement.scrollTop;
+        console.log(this.scrollPosition);
+
+        const body = document.body;
+        body.style.position = 'fixed';
+        // body.style.top = scrollY;
+        window.scrollTo(0, parseInt(this.scrollPosition));
     }
 
     enableScroll() {
         console.log("enable");
-        // this.setState({disableScroll: false});
-        this.scroll = true;
+        console.log(this.scrollPosition);
+
+        const body = document.body;
+      const scrollY = body.style.top;
+      body.style.position = '';
+      body.style.top = '';
+      window.scrollTo(0, parseInt(this.scrollPosition));
+
     }
 
     changeTabs = (event : any) => {
@@ -126,18 +134,19 @@ class Navigation extends Component<NavigationProps, NavigationState> {
                      id="guest_book"
                      onClick={this.changeTabs}
                      href="#">Guest Book</a></li>
+             {/* Assignment 6 */}
              <li><a className={this.state.page === "movies" ? "active-button" : "button" }
                     id="movies"
                     onClick={this.changeTabs}
                     href="#">Movies</a></li>
               {/* Intro, hobbies, next steps ==> Pic */}
-              <li><a className={this.state.page === "about" ? "active-button" : "button" }
-                     id="about"
-                     onClick={this.changeTabs}
-                     href="javascript:void(0);">About</a></li>
-              <li><a className={this.state.page === "github" ? "active-button" : "button" }
-                     id="github"
-                     href="https://github.com/anniiebaii/portfolio">Github</a></li>
+             <li><a className={this.state.page === "about" ? "active-button" : "button" }
+                    id="about"
+                    onClick={this.changeTabs}
+                    href="#">About</a></li>
+             <li><a className={this.state.page === "github" ? "active-button" : "button" }
+                    id="github"
+                    href="https://github.com/anniiebaii/portfolio">Github</a></li>
             </ul>
             <hr></hr>
           </div>,

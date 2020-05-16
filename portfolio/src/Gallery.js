@@ -28,12 +28,11 @@ class Gallery extends Component{
     }
 
     componentDidUpdate() {
-        this.render();
+        // this.render();
         console.log(this.state);
     }
 
     componentDidMount() {
-        // document.addEventListener('scroll', scrollFunction);
         document.addEventListener('click', this.closeModal());
     }
 
