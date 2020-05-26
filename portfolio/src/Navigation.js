@@ -135,10 +135,17 @@ class Navigation extends Component<NavigationProps, NavigationState> {
                      onClick={this.changeTabs}
                      href="#">Guest Book</a></li>
              {/* Assignment 6 */}
-             <li><a className={this.state.page === "movies" ? "active-button" : "button" }
-                    id="movies"
-                    onClick={this.changeTabs}
-                    href="#">Movies</a></li>
+             <li>
+                <div className="dropdown">
+                    <a className={this.state.page === "movies" ? "active-button" : "button" }
+                        id="movies"
+                        onClick={this.changeTabs}
+                        href="#">Movies</a>
+                    <div class="dropdown-content">
+                        <a className="add">Add Movie</a>
+                        <a className="delete">Delete Movie</a>
+                    </div>
+                </div></li>
               {/* Intro, hobbies, next steps ==> Pic */}
              <li><a className={this.state.page === "about" ? "active-button" : "button" }
                     id="about"
