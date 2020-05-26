@@ -87,11 +87,10 @@ class Navigation extends Component<NavigationProps, NavigationState> {
         console.log(this.scrollPosition);
 
         const body = document.body;
-      const scrollY = body.style.top;
-      body.style.position = '';
-      body.style.top = '';
-      window.scrollTo(0, parseInt(this.scrollPosition));
-
+        const scrollY = body.style.top;
+        body.style.position = '';
+        body.style.top = '';
+        window.scrollTo(0, parseInt(this.scrollPosition));
     }
 
     changeTabs = (event : any) => {
@@ -177,11 +176,12 @@ class Navigation extends Component<NavigationProps, NavigationState> {
             (this.state.page === "about" ? <About/> :
             (this.state.page === "projects" ? <Projects/> :
             (this.state.page === "guest_book" ? <GuestBook/> :
-            ((this.movieOptions.includes(this.state.page)) ? <Movies
-                                                        source={movies_list}
-                                                        state={this.state.page}
-                                                        openModalCallback={this.disableScroll}
-                                                        closeModalCallback={this.enableScroll}/> : <Home/>))))}
+            ((this.movieOptions.includes(this.state.page)) ?
+                <Movies
+                    source={movies_list}
+                    page={this.state.page}
+                    openModalCallback={this.disableScroll}
+                    closeModalCallback={this.enableScroll}/> : <Home/>))))}
           </div>
       ])
   }

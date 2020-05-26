@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 type GalleryProps = {
     source: any;
     header: any;
+    modalOptions: any;
     closeModalCallback: any;
     openModalCallback: any;
     pagination_number: integer;
@@ -42,10 +43,12 @@ class Gallery extends Component{
         if (this.state.modal !== undefined)
         {
             console.log(event.target.id);
+            console.log(event.target.className)
         }
         if (this.state.modal !== undefined &&
             (event.target.id === "close-button" ||
-            event.target.id !== "modal-content"))
+            (event.target.id !== "modal-content" &&
+            event.target.className !== "modal-button")))
         {
             console.log("CLOSE MODAL");
             // var newModal = React.cloneElement(this.state.modal, {style: {display: "none"}});
@@ -56,6 +59,7 @@ class Gallery extends Component{
 
     openModal = (event : any) => {
         console.log("CLICKED MODAL");
+        console.log(this.props.modalButtons);
         this.props.openModalCallback();
         this.setState({modal: (
             <div id="myModal" className="modal" style={{display: "block"}}>
@@ -67,7 +71,11 @@ class Gallery extends Component{
                    src={event.target.src}
                    alt="modal-content"
                    ></img>
-              <span id="caption">{event.target.alt}</span>
+              <span id="caption">
+                {event.target.alt}
+                {this.props.modalButtons}
+              </span>
+              <span id="butt"></span>
             </div>
 
         )}, this._refresh);

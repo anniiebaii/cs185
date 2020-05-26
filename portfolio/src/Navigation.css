@@ -24,7 +24,7 @@ li {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  overflow: display;
+  overflow: "display";
 }
 /* TODO: keep link colored when selected */
 .button:hover:not(.active) {
