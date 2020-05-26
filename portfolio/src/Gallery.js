@@ -48,7 +48,8 @@ class Gallery extends Component{
         if (this.state.modal !== undefined &&
             (event.target.id === "close-button" ||
             (event.target.id !== "modal-content" &&
-            event.target.className !== "modal-button")))
+             event.target.className !== "modal-button" &&
+             event.target.className !== "sub-button")))
         {
             console.log("CLOSE MODAL");
             // var newModal = React.cloneElement(this.state.modal, {style: {display: "none"}});

@@ -6,7 +6,7 @@
     text-decoration: none;
     overflow: "display";
     background-color: #d3d3d3;
-    width: 50%;
+    width: 100%;
 }
 .modal-button:hover:not(.active) {
   background-color: #f1e4d3;
@@ -16,6 +16,11 @@
   background-color: #f1e4d3;
 }
 
+.dropdown:hover .modal-button {
+    background-color: #f1e4d3;
+}
+
+
 #delete.modal-button:hover:not(.active) {
     background-color: #ff6e6e;
 }
@@ -24,4 +29,10 @@
     padding: 15px;
     display: flex;
     width: 100%;
+}
+
+.add-movie-form {
+    float: left;
+    width: 100%;
+    height: 100%;
 }

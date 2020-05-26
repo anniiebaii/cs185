@@ -98,6 +98,7 @@ hr {
 .dropdown {
   position: relative;
   display: inline-block;
+  width: 100%;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -106,6 +107,8 @@ hr {
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
+  width: 100%;
+  text-align: center;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -113,7 +116,8 @@ hr {
 /* Links inside the dropdown */
 .dropdown-content a {
   padding: 12px 16px;
-  display: flex;
+  display: block;
+  text-align: center;
 }
 
 

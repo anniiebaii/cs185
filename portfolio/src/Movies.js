@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Gallery from './Gallery';
+import MoviesAdd from './MoviesAdd';
 import movies from './movie_list.json';
 import './Movies.css';
 
@@ -12,29 +13,57 @@ class Movies extends Component
         super(props);
         console.log(props);
 
-        this.state = {page: this.props.state}
-        this.changeTabs = this.changeTabs.bind(this);
+        this.state = {page: this.props.state, list: "All"}
+        this.changeList = this.changeList.bind(this);
         this.deleteMovie = this.deleteMovie.bind(this);
-        this.addToList = this.addToList.bind(this);
-
+        this.handleListChange = this.handleListChange.bind(this);
+        this.getLists = this.getLists.bind(this);
+        this.addToLists = this.getLists("added");
+        this.selectedLists = this.getLists("selected")
     }
     // @TODO add dropdown to select movie list to display (default: "All")
     // @TODO add search bar
     // Pagination
 
-    changeTabs = (event : any) => {
+    changeList = (event : any) => {
         console.log(event.target.id);
         console.log(event.target);
 
-        this.setState({page: event.target.id}, this._refresh);
+        // this.setState({page: event.target.id}, this._refresh);
     }
 
     deleteMovie = (event : any) => {
 
     }
 
-    addToList = (event : any) => {
+    addToLists = (event : any) => {
+        alert("STUB: Added to " + event.target.id);
 
+    }
+
+    handleListChange = (event : any) => {
+        alert("STUB: reloaded to display " + event.target.id)
+    }
+
+    getLists(type)
+    {
+        var lists = [];
+        var onClick = this.handleListChange;
+        if (type == "added")
+        {
+            onClick = this.addToLists;
+        }
+        lists.push(
+            <a className="sub-button"
+               id="add-movies-action"
+               onClick={onClick}
+               href="#add-movie">Stub WannaWatch</a>);
+        lists.push(
+            <a className="sub-button"
+               id="delete-movies-action"
+               onClick={onClick}
+               href="#delete-movie">Stub Watched</a>);
+        return lists;
     }
 
     render()
@@ -48,10 +77,14 @@ class Movies extends Component
                     closeModalCallback={this.props.closeModalCallback}
                     modalButtons={
                         <div className="modal-options">
-                            <a className="modal-button"
-                                id="add-to-list"
-                                onClick={this.addToList}
-                                href="#">Add to List</a>
+                            <div className="dropdown">
+                                <a className="modal-button"
+                                    id="add-to-list"
+                                    href="#">Add to List</a>
+                                <div className="dropdown-content">
+                                    {this.addToLists}
+                                </div>
+                            </div>
                             <a className="modal-button"
                                 id="delete"
                                 onClick={this.deleteMovie}
@@ -60,26 +93,18 @@ class Movies extends Component
                     }
                     header={
                         <div className="page-header">
-                            <h2 className="subheader"
-                                style={{display: "inline-block"}}>Movies</h2>
-                            <div className="dropdown">
-                                <a className="sub-button"
+                            <div className="dropdown" style={{width: "auto", backgroundColor: "#d3d3d3", margin: "15px"}}>
+                                <a className="button"
                                     id="movies"
-                                    onClick={this.changeTabs}
-                                    href="#">Movies</a>
+                                    href="#">{this.state.list}</a>
                                 <div className="dropdown-content">
-                                    <a className="sub-button"
-                                       id="add-movies"
-                                       onClick={this.changeTabs}
-                                       href="#add-movie">Add Movie</a>
-                                    <a className="sub-button"
-                                       id="delete-movies"
-                                       onClick={this.changeTabs}
-                                       href="#delete-movie">Delete Movie</a>
+                                    {this.selectedLists}
                                 </div>
                             </div>
-                        </div>}/>
-            : (this.props.page === "add-movies" ? <div>add movies</div> : <div> WIP </div>)        ])
+                        </div>}/> :
+            (this.props.page === "add-movies" ?
+                <MoviesAdd/> :
+                <div> WIP </div>)        ])
     }
 
 }

@@ -16,7 +16,7 @@ img.resize {
   padding-right: 0px;
   padding-bottom: 50px;
   max-width: 60%;
-  overflow: hidden;
+  overflow: scroll;
   height: auto;
 
 }
