@@ -6,7 +6,8 @@ import Gallery from './Gallery';
 import Home from './Home';
 import BackToTop from './BackToTop';
 import GuestBook from './GuestBook';
-import retrieveMovieInfo from './Movies';
+import retrieveMovieInfo from './MoviesFunctions';
+import Movies from './Movies';
 
 
 type NavigationProps = {
@@ -53,6 +54,8 @@ class Navigation extends Component<NavigationProps, NavigationState> {
         this.enableScroll = this.enableScroll.bind(this);
         window.addEventListener('scroll', this.scrollFunction);
         this.scrollPosition = 0;
+
+        this.movieOptions = ['movies', 'add-movies', 'delete-movies'];
     }
 
     scrollFunction() {
@@ -137,13 +140,19 @@ class Navigation extends Component<NavigationProps, NavigationState> {
              {/* Assignment 6 */}
              <li>
                 <div className="dropdown">
-                    <a className={this.state.page === "movies" ? "active-button" : "button" }
+                    <a className={(this.movieOptions.includes(this.state.page)) ? "active-button" : "button" }
                         id="movies"
                         onClick={this.changeTabs}
                         href="#">Movies</a>
-                    <div class="dropdown-content">
-                        <a className="add">Add Movie</a>
-                        <a className="delete">Delete Movie</a>
+                    <div className="dropdown-content">
+                        <a className={this.state.page === "add-movies" ? "active-button" : "sub-button" }
+                           id="add-movies"
+                           onClick={this.changeTabs}
+                           href="#add-movie">Add Movie</a>
+                        <a className={this.state.page === "delete-movies" ? "active-button" : "sub-button" }
+                           id="delete-movies"
+                           onClick={this.changeTabs}
+                           href="#delete-movie">Delete Movie</a>
                     </div>
                 </div></li>
               {/* Intro, hobbies, next steps ==> Pic */}
@@ -159,11 +168,20 @@ class Navigation extends Component<NavigationProps, NavigationState> {
           </div>,
           <div className="page-container" key="Body">
             {<BackToTop/>}
-            {this.state.page === "gallery" ? <Gallery source={images} local={true} openModalCallback={this.disableScroll} closeModalCallback={this.enableScroll}/> :
+            {this.state.page === "gallery" ? <Gallery
+                                                source={images}
+                                                local={true}
+                                                openModalCallback={this.disableScroll}
+                                                closeModalCallback={this.enableScroll}
+                                                header={<h2 className="subheader">Gallery</h2>}/> :
             (this.state.page === "about" ? <About/> :
             (this.state.page === "projects" ? <Projects/> :
             (this.state.page === "guest_book" ? <GuestBook/> :
-            (this.state.page === "movies" ? <Gallery source={movies_list} local={false} openModalCallback={this.disableScroll} closeModalCallback={this.enableScroll}/> : <Home/>))))}
+            ((this.movieOptions.includes(this.state.page)) ? <Movies
+                                                        source={movies_list}
+                                                        state={this.state.page}
+                                                        openModalCallback={this.disableScroll}
+                                                        closeModalCallback={this.enableScroll}/> : <Home/>))))}
           </div>
       ])
   }

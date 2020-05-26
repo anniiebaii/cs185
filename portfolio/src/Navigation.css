@@ -18,7 +18,7 @@ li {
   /* margin: auto; */
 }
 
-li a {
+.button {
   display: block;
   color: #2d4829;
   text-align: center;
@@ -27,11 +27,28 @@ li a {
   overflow: display;
 }
 /* TODO: keep link colored when selected */
-li a:hover:not(.active) {
+.button:hover:not(.active) {
   background-color: #f1e4d3;
 }
 
-li a:active {
+.button:active {
+  background-color: #f1e4d3;
+}
+
+.sub-button {
+  display: block;
+  color: #2d4829;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  overflow: display;
+}
+
+.sub-button:hover:not(.active) {
+  background-color: #f1e4d3;
+}
+
+.sub-button:active {
   background-color: #f1e4d3;
 }
 
@@ -51,6 +68,11 @@ hr {
 
 .active-button {
   background-color: #f1e4d3;
+  display: block;
+  color: #2d4829;
+  text-align: center;
+  padding: 14px 16px;
+  overflow: "display";
   text-decoration:underline;
 }
 
@@ -98,9 +120,15 @@ hr {
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
+    background-color: #ffff;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .button {
     background-color: #f1e4d3;
 }
+
+/* .dropdown .active-button {
+    background-color: #f1e4d3;
+    text-decoration:underline;
+} */

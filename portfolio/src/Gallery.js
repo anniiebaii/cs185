@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 
 type GalleryProps = {
     source: any;
+    header: any;
     closeModalCallback: any;
     openModalCallback: any;
+    pagination_number: integer;
 }
 
 type GalleryState = {
@@ -71,22 +73,26 @@ class Gallery extends Component{
         )}, this._refresh);
     }
 
+    // @TODO implement pagination using provided pagination_number
     render() {
         let images_list = [];
-        this.props.source.forEach((item) =>
-            images_list.push(
-                <img key={item.filename}
-                     className="modal-image"
-                     src={ this.props.local === true ? require('./images/'+item.filename) : item.filename}
-                     alt={item.caption}
-                     onClick={this.openModal}
-                   ></img>
-            )
-            // console.log(item)
-        );
+        if (this.props.source)
+        {
+            this.props.source.forEach((item) =>
+                images_list.push(
+                    <img key={item.filename}
+                         className="modal-image"
+                         src={ this.props.local === true ? require('./images/'+item.filename) : item.filename}
+                         alt={item.caption}
+                         onClick={this.openModal}
+                       ></img>
+                )
+            );
+        }
+
         return (
             <div className="sub-page-container" onClick={this.closeModal}>
-                <h2 className="subheader">Gallery</h2>
+                {this.props.header}
                 {this.state.modal}
                 {images_list}
             </div>
