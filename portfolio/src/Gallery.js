@@ -21,6 +21,8 @@ class Gallery extends Component{
                       modal: undefined}
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+
+        // handle modalButtons
     }
 
     _refresh = (props?: GalleryProps) => {
@@ -28,6 +30,7 @@ class Gallery extends Component{
         {
             props = this.props;
         }
+        console.log(this.state.modal);
     }
 
     componentDidUpdate() {
@@ -61,7 +64,9 @@ class Gallery extends Component{
     openModal = (event : any) => {
         console.log("CLICKED MODAL");
         console.log(this.props.modalButtons);
+        console.log(event.target.key);
         this.props.openModalCallback();
+        this.props.openModalUpdate(event.target);
         this.setState({modal: (
             <div id="myModal" className="modal" style={{display: "block"}}>
               <span className="close"
@@ -89,14 +94,16 @@ class Gallery extends Component{
         {
             this.props.source.forEach((item) =>
                 images_list.push(
-                    <img key={item.filename}
+                    <img key={item.id}
+                         id={item.id}
                          className="modal-image"
-                         src={ this.props.local === true ? require('./images/'+item.filename) : item.filename}
+                         src={this.props.local === true ? require('./images/'+item.filename) : item.filename}
                          alt={item.caption}
                          onClick={this.openModal}
                        ></img>
                 )
             );
+            console.log(images_list);
         }
 
         return (

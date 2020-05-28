@@ -20,22 +20,27 @@ type NavigationState= {
 
 const images = [
     {
+        id: 'appa01.jpg',
         filename: 'appa01.jpg',
         caption: "Meet Appa, my German Shepherd puppy! He's named after the sky bison in Avatar the Last Air Bender. Appa is a stubborn puppy that won't let anything stop him from getting head scritches and naps on my lap."
     },
     {
+        id: 'appa02.jpg',
         filename: 'appa02.jpg',
         caption: 'Appa'
     },
     {
+        id: 'appa03.jpg',
         filename: 'appa03.jpg',
         caption: 'Appa getting the pets.'
     },
     {
+        id: 'ucsb01.jpg',
         filename: 'ucsb01.jpg',
         caption: 'UCSB beaches are gorgeous.'
     },
     {
+        id: 'ucsb02.jpg',
         filename: 'ucsb02.jpg',
         caption: 'UCSB Sunsets'
     }

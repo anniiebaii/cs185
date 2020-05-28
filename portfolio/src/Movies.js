@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Gallery from './Gallery';
 import MoviesAdd from './MoviesAdd';
 import movies from './movie_list.json';
+import config from './config.js';
 import './Movies.css';
 
 // Controller for Movies tab
@@ -13,13 +14,17 @@ class Movies extends Component
         super(props);
         console.log(props);
 
-        this.state = {page: this.props.state, list: "All"}
+        this.state = {page: this.props.state, list: "All", selected: null}
         this.changeList = this.changeList.bind(this);
         this.deleteMovie = this.deleteMovie.bind(this);
         this.handleListChange = this.handleListChange.bind(this);
         this.getLists = this.getLists.bind(this);
         this.addToLists = this.getLists("added");
-        this.selectedLists = this.getLists("selected")
+        this.selectedLists = this.getLists("selected");
+        this.select = this.select.bind(this);
+        this.deselect = this.deselect.bind(this);
+
+        this.selected = null;
     }
     // @TODO add dropdown to select movie list to display (default: "All")
     // @TODO add search bar
@@ -33,7 +38,22 @@ class Movies extends Component
     }
 
     deleteMovie = (event : any) => {
+        if (this.state.selected === null)
+        {
+            alert("Error deleting..");
+            return;
+        }
+        console.log("deleting..." + this.state.selected);
+        const firebase = require('firebase');
 
+        if (!firebase.apps.length) {
+           firebase.initializeApp(config)
+        }
+
+        // Get Reference to Data in Firebase
+        var movieRef = firebase.database().ref('Movies/' + this.state.selected);
+        movieRef.remove();
+        alert("Delete Sucessful");
     }
 
     addToLists = (event : any) => {
@@ -66,6 +86,15 @@ class Movies extends Component
         return lists;
     }
 
+    select(movie){
+        console.log(movie);
+        this.setState({selected: movie.id});
+    }
+
+    deselect() {
+        this.setState({selected: null});
+    }
+
     render()
     {
         return ([
@@ -74,7 +103,9 @@ class Movies extends Component
                     source={this.props.source}
                     local={false}
                     openModalCallback={this.props.openModalCallback}
+                    openModalUpdate={this.select}
                     closeModalCallback={this.props.closeModalCallback}
+                    closeModalUpdate={this.deselect}
                     modalButtons={
                         <div className="modal-options">
                             <div className="dropdown">

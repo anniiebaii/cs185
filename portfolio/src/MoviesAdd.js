@@ -26,7 +26,7 @@ class MoviesAdd extends Component
 
     handleChange = (event) => {
         const field = event.target.id;
-        var val = field === "anon" ? event.target.checked : event.target.value;
+        var val = event.target.value;
 
         var stateObject = function() {
           var returnObj = {};
@@ -54,11 +54,11 @@ class MoviesAdd extends Component
             }
 
             // var test = {name:"Ying", message: "yur", anon: false}
-            // var jsonBody = JSON.stringify(this.state);
-            // // Send Data to Firebase
-            // firebase.database().ref('GuestBook').push().set(jsonBody)
+            var jsonBody = JSON.stringify(this.state);
+            // Send Data to Firebase
+            firebase.database().ref('Movies').push().set(jsonBody)
             // this.props.callBack();
-            // alert("Submission Sucessful");
+            alert("Submission Sucessful");
 
             this.setState({IMDBbID: ""});
         }
@@ -68,6 +68,7 @@ class MoviesAdd extends Component
     componentDidUpdate()
     {
         console.log(this.state);
+        this.render();
     }
 
     render()
