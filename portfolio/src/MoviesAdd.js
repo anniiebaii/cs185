@@ -71,8 +71,6 @@ class MoviesAdd extends Component
                 // Send Data to Firebase
                 firebase.database().ref('Movies/' + item["id"]).set(jsonBody);
                 alert("Submission Sucessful");
-
-                this.setState({IMDBbID: ""});
               })
               .catch(function (error) {
                 // handle error
@@ -85,7 +83,6 @@ class MoviesAdd extends Component
             // this.props.callBack();
 
         }
-
     }
 
     componentDidUpdate()
