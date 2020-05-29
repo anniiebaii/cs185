@@ -156,7 +156,7 @@ class Navigation extends Component<NavigationProps, NavigationState> {
                         <a className={this.state.page === "create-movies-list" ? "active-button" : "sub-button" }
                            id="create-movies-list"
                            onClick={this.changeTabs}
-                           href="#create-movies-list">Create New Movie Lists</a>
+                           href="#create-movies-list">New Movie Lists</a>
                     </div>
                 </div></li>
               {/* Intro, hobbies, next steps ==> Pic */}

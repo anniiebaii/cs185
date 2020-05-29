@@ -8,6 +8,8 @@ import React, {Component} from 'react';
 import './Movies.css';
 import config from './config.js'
 
+const axios = require('axios');
+
 class MoviesAdd extends Component
 {
     constructor(props)
@@ -42,6 +44,7 @@ class MoviesAdd extends Component
     handleSubmit = (event) => {
 
         const firebase = require('firebase');
+        var imdb = this.state.imdb;
 
         if (this.state.imdb === "")
         {
@@ -53,14 +56,34 @@ class MoviesAdd extends Component
                firebase.initializeApp(config)
             }
 
-            // var test = {name:"Ying", message: "yur", anon: false}
-            var jsonBody = JSON.stringify(this.state);
             // Send Data to Firebase
-            firebase.database().ref('Movies').push().set(jsonBody)
-            // this.props.callBack();
-            alert("Submission Sucessful");
+            //
+            axios.get('https://www.omdbapi.com/?apikey=d7201b9b&i=' + imdb)
+              .then(function (response) {
+                // handle success
+                // console.log(response);
+                var item = {};
+                item["id"] = imdb;
+                item["filename"] = response.data.Poster;
+                item["caption"] = response.data.Title + " | Director(s): " + response.data.Director + " | IMDB Rating: " + response.data.imdbRating;
+                // var test = {name:"Ying", message: "yur", anon: false}
+                var jsonBody = JSON.stringify(item);
+                // Send Data to Firebase
+                firebase.database().ref('Movies/' + item["id"]).set(jsonBody);
+                alert("Submission Sucessful");
 
-            this.setState({IMDBbID: ""});
+                this.setState({IMDBbID: ""});
+              })
+              .catch(function (error) {
+                // handle error
+                console.log(error);
+              })
+              .then(function () {
+                // always executed
+              });
+
+            // this.props.callBack();
+
         }
 
     }

@@ -20,8 +20,7 @@ class Movies extends Component
         this.deleteMovie = this.deleteMovie.bind(this);
         this.handleListChange = this.handleListChange.bind(this);
         this.getLists = this.getLists.bind(this);
-        this.addToLists = this.getLists("added");
-        this.selectedLists = this.getLists("selected");
+
         this.select = this.select.bind(this);
         this.deselect = this.deselect.bind(this);
 
@@ -124,9 +123,6 @@ class Movies extends Component
                         onClick={onClick}
                         href="">{childSnapshot.key}</a>);
              });
-
-             this.render();
-
         });
 
 
@@ -156,6 +152,8 @@ class Movies extends Component
     render()
     {
         console.log("render");
+        this.addToLists = this.getLists("added");
+        this.selectedLists = this.getLists("selected");
         return ([
             this.props.page === "movies" ?
                 <Gallery
