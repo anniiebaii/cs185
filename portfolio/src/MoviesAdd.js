@@ -45,6 +45,7 @@ class MoviesAdd extends Component
 
         const firebase = require('firebase');
         var imdb = this.state.imdb;
+        var success = false;
 
         if (this.state.imdb === "")
         {
@@ -60,6 +61,12 @@ class MoviesAdd extends Component
             //
             axios.get('https://www.omdbapi.com/?apikey=d7201b9b&i=' + imdb)
               .then(function (response) {
+                  console.log(response);
+                  if (response.data.Response === "False")
+                  {
+                      alert(response.data.Error);
+                      return;
+                  }
                 // handle success
                 // console.log(response);
                 var item = {};
@@ -69,12 +76,22 @@ class MoviesAdd extends Component
                 // var test = {name:"Ying", message: "yur", anon: false}
                 var jsonBody = JSON.stringify(item);
                 // Send Data to Firebase
-                firebase.database().ref('Movies/' + item["id"]).set(jsonBody);
-                alert("Submission Sucessful");
+                firebase.database().ref('Movies/' + item["id"]).set(jsonBody, function(res) {
+                    if (res)
+                    {
+                        alert(res);
+                    }
+                    else
+                    {
+                        alert("Submission Sucessful");
+                    }
+                });
+
               })
               .catch(function (error) {
                 // handle error
                 console.log(error);
+                alert("Invalid");
               })
               .then(function () {
                 // always executed

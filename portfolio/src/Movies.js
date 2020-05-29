@@ -90,7 +90,7 @@ class Movies extends Component
     }
 
     handleListChange = (event : any) => {
-        alert("STUB: reloaded to display " + event.target.id)
+        alert("STUB: reloaded to display " + event.target.id);
     }
 
     getLists(type)
