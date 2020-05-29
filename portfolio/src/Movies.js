@@ -82,7 +82,7 @@ class Movies extends Component
         }
 
         // Get Reference to Data in Firebase
-        var movieRef = firebase.database().ref('MovieLists/' + this.state.list_name).push().set("test");
+        var movieRef = firebase.database().ref('MovieLists/' + event.target.key).push().set(this.state.selected);
 
         alert("Delete Sucessful");
         this.setState({selected: null});
