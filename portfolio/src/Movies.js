@@ -82,7 +82,7 @@ class Movies extends Component
         }
 
         // Get Reference to Data in Firebase
-        var movieRef = firebase.database().ref('MovieLists/' + event.target.key).push().set(this.state.selected);
+        var movieRef = firebase.database().ref('MovieLists/' + event.target.id).push().set(this.state.selected);
 
         alert("Delete Sucessful");
         this.setState({selected: null});
@@ -124,7 +124,11 @@ class Movies extends Component
                         onClick={onClick}
                         href="">{childSnapshot.key}</a>);
              });
+
+             this.render();
+
         });
+
 
 
         // lists.push(
