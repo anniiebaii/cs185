@@ -60,7 +60,7 @@ class Navigation extends Component<NavigationProps, NavigationState> {
         window.addEventListener('scroll', this.scrollFunction);
         this.scrollPosition = 0;
 
-        this.movieOptions = ['movies', 'add-movies', 'delete-movies'];
+        this.movieOptions = ['movies', 'add-movies', 'create-movies-list'];
     }
 
     scrollFunction() {
@@ -152,11 +152,11 @@ class Navigation extends Component<NavigationProps, NavigationState> {
                         <a className={this.state.page === "add-movies" ? "active-button" : "sub-button" }
                            id="add-movies"
                            onClick={this.changeTabs}
-                           href="#add-movie">Add Movie</a>
-                        <a className={this.state.page === "delete-movies" ? "active-button" : "sub-button" }
-                           id="delete-movies"
+                           href="#add-movie">Add Movies</a>
+                        <a className={this.state.page === "create-movies-list" ? "active-button" : "sub-button" }
+                           id="create-movies-list"
                            onClick={this.changeTabs}
-                           href="#delete-movie">Delete Movie</a>
+                           href="#create-movies-list">Create New Movie Lists</a>
                     </div>
                 </div></li>
               {/* Intro, hobbies, next steps ==> Pic */}

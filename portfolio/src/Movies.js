@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Gallery from './Gallery';
 import MoviesAdd from './MoviesAdd';
+import MoviesList from './MoviesLists';
 import movies from './movie_list.json';
 import config from './config.js';
 import './Movies.css';
@@ -26,6 +27,11 @@ class Movies extends Component
 
         this.selected = null;
     }
+
+    _refresh()
+    {
+        this.render();
+    }
     // @TODO add dropdown to select movie list to display (default: "All")
     // @TODO add search bar
     // Pagination
@@ -35,6 +41,11 @@ class Movies extends Component
         console.log(event.target);
 
         // this.setState({page: event.target.id}, this._refresh);
+    }
+
+    componentDidUpdate()
+    {
+        this.render();
     }
 
     deleteMovie = (event : any) => {
@@ -54,9 +65,27 @@ class Movies extends Component
         var movieRef = firebase.database().ref('Movies/' + this.state.selected);
         movieRef.remove();
         alert("Delete Sucessful");
+        this.setState({selected: null});
     }
 
     addToLists = (event : any) => {
+        if (this.state.selected === null)
+        {
+            alert("Error adding to list..");
+            return;
+        }
+        console.log("adding..." + this.state.selected);
+        const firebase = require('firebase');
+
+        if (!firebase.apps.length) {
+           firebase.initializeApp(config)
+        }
+
+        // Get Reference to Data in Firebase
+        var movieRef = firebase.database().ref('MovieLists/' + this.state.list_name).push().set("test");
+
+        alert("Delete Sucessful");
+        this.setState({selected: null});
         alert("STUB: Added to " + event.target.id);
 
     }
@@ -73,16 +102,41 @@ class Movies extends Component
         {
             onClick = this.addToLists;
         }
-        lists.push(
-            <a className="sub-button"
-               id="add-movies-action"
-               onClick={onClick}
-               href="#add-movie">Stub WannaWatch</a>);
-        lists.push(
-            <a className="sub-button"
-               id="delete-movies-action"
-               onClick={onClick}
-               href="#delete-movie">Stub Watched</a>);
+
+        const firebase = require('firebase');
+
+        if (!firebase.apps.length) {
+           firebase.initializeApp(config)
+        }
+        var movieListsRef = firebase.database().ref("MovieLists");
+        console.log(movieListsRef);
+
+        //retrieve its data
+        movieListsRef.on('value', snapshot => {
+             //this is your call back function
+        		 //state will be a JSON object after this
+             //set your apps state to contain this data however you like
+             // const state = snapshot.val()
+             snapshot.forEach(function (childSnapshot) {
+                 lists.push(
+                     <a className="sub-button"
+                        id={childSnapshot.key}
+                        onClick={onClick}
+                        href="">{childSnapshot.key}</a>);
+             });
+        });
+
+
+        // lists.push(
+        //     <a className="sub-button"
+        //        id="add-movies-action"
+        //        onClick={onClick}
+        //        href="#add-movie">Stub WannaWatch</a>);
+        // lists.push(
+        //     <a className="sub-button"
+        //        id="delete-movies-action"
+        //        onClick={onClick}
+        //        href="#delete-movie">Stub Watched</a>);
         return lists;
     }
 
@@ -97,6 +151,7 @@ class Movies extends Component
 
     render()
     {
+        console.log("render");
         return ([
             this.props.page === "movies" ?
                 <Gallery
@@ -135,7 +190,7 @@ class Movies extends Component
                         </div>}/> :
             (this.props.page === "add-movies" ?
                 <MoviesAdd/> :
-                <div> WIP </div>)        ])
+                <MoviesList/>)        ])
     }
 
 }

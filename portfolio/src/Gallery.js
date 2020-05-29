@@ -15,6 +15,7 @@ type GalleryState = {
 class Gallery extends Component{
     constructor(props) {
         super(props);
+        console.log("gal construct");
         console.log(props);
         this.state = {selected: undefined,
                       caption: undefined,
@@ -31,6 +32,7 @@ class Gallery extends Component{
             props = this.props;
         }
         console.log(this.state.modal);
+        this.render();
     }
 
     componentDidUpdate() {
@@ -66,7 +68,10 @@ class Gallery extends Component{
         console.log(this.props.modalButtons);
         console.log(event.target.key);
         this.props.openModalCallback();
-        this.props.openModalUpdate(event.target);
+        if (this.props.openModalUpdate != undefined)
+        {
+            this.props.openModalUpdate(event.target);
+        }
         this.setState({modal: (
             <div id="myModal" className="modal" style={{display: "block"}}>
               <span className="close"
