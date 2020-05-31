@@ -111,6 +111,11 @@ class Gallery extends Component{
             console.log(images_list);
         }
 
+        if (images_list.length === 0)
+        {
+            images_list.push(<h2 className="header" style={{align: "center"}}>No Results</h2>);
+        }
+
         return (
             <div className="sub-page-container" onClick={this.closeModal}>
                 {this.props.header}

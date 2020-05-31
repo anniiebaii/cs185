@@ -42,6 +42,7 @@ class MoviesAdd extends Component
 
     // @TODO check for char limits..
     handleSubmit = (event) => {
+        event.preventDefault();
 
         const firebase = require('firebase');
         var imdb = this.state.imdb;
@@ -71,6 +72,7 @@ class MoviesAdd extends Component
                 // console.log(response);
                 var item = {};
                 item["id"] = imdb;
+                item["title"] = response.data.Title;
                 item["filename"] = response.data.Poster;
                 item["caption"] = response.data.Title + " | Director(s): " + response.data.Director + " | IMDB Rating: " + response.data.imdbRating;
                 // var test = {name:"Ying", message: "yur", anon: false}

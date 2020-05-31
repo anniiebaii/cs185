@@ -38,6 +38,21 @@ class MoviesSearch extends Component
     handleSubmit = (event) => {
         // return set of movies with searched keyword
         event.preventDefault();
+        console.log(this.state.keyword);
+        var movieSet = [];
+        this.props.source.forEach((item) =>
+            {
+                var title = item.title.toLowerCase();
+                if (title.includes(this.state.keyword.toLowerCase()))
+                {
+                    console.log(title);
+                    movieSet.push(item);
+                }
+            }
+
+        );
+        console.log(movieSet);
+        this.props.callBack(movieSet);
 
     }
 
@@ -52,7 +67,7 @@ class MoviesSearch extends Component
         return (
             <div className="search-container">
                 <form className="search-bar" onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="Search.." onChange={this.handleChange}></input>
+                    <input id="keyword" type="text" placeholder="Search.." onChange={this.handleChange}></input>
                     <input type="submit" value="Go"/>
                 </form>
             </div>

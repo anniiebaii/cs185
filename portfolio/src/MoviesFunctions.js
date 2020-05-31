@@ -17,16 +17,17 @@ function retrieveMovieInfo(listname="")
     }
 
     // movies.map( (code) => {
-    //     codes.push(code);
+    //     // codes.push(code);
     //     axios.get('https://www.omdbapi.com/?apikey=d7201b9b&i=' + code)
     //       .then(function (response) {
     //         // handle success
     //         // console.log(response);
     //         var item = {};
     //         item["id"] = code;
+    //         item["title"] = response.data.Title;
     //         item["filename"] = response.data.Poster;
     //         item["caption"] = response.data.Title + " | Director(s): " + response.data.Director + " | IMDB Rating: " + response.data.imdbRating;
-    //         list.push(item);
+    //         // list.push(item);
     //         // var test = {name:"Ying", message: "yur", anon: false}
     //         var jsonBody = JSON.stringify(item);
     //         // Send Data to Firebase

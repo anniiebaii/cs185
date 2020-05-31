@@ -94,17 +94,38 @@ class Movies extends Component
 
     handleListChange = (event : any) => {
         // alert("STUB: reloaded to display " + event.target.id);
-        this.setState({content:[]});
+        var content = [];
+        let list_val = event.target.id;
+        var stateObject = function() {
+          var returnObj = {};
+          console.log("list = " + list_val);
+          returnObj["list"] = list_val;
+          returnObj["content"] = content;
+             return returnObj;
+        }();
+
+        this.setState( stateObject);
     }
 
     getLists(type)
     {
+        var curr_list = this.state.list;
         var lists = [];
         var onClick = this.handleListChange;
         if (type == "added")
         {
             onClick = this.addToLists;
         }
+
+        if (this.state.list !== "All")
+        {
+            lists.push(
+                <a className="sub-button"
+                   id="All"
+                   onClick={onClick}
+                   >All</a>);
+        }
+
 
         const firebase = require('firebase');
 
@@ -121,13 +142,22 @@ class Movies extends Component
              //set your apps state to contain this data however you like
              // const state = snapshot.val()
              snapshot.forEach(function (childSnapshot) {
-                 lists.push(
-                     <a className="sub-button"
-                        id={childSnapshot.key}
-                        onClick={onClick}
-                        >{childSnapshot.key}</a>);
+                 {
+                     if (curr_list !== childSnapshot.key)
+                     {
+                         lists.push(
+                             <a className="sub-button"
+                                id={childSnapshot.key}
+                                onClick={onClick}
+                                >{childSnapshot.key}</a>);
+
+                     }
+
+
+                 }
+
              });
-        });
+         });
         return lists;
     }
 
@@ -142,6 +172,7 @@ class Movies extends Component
 
     handleSearch(movieSet) {
         // trigger display change
+        console.log("handleSearch");
         this.setState({content: movieSet});
     }
 
@@ -150,6 +181,7 @@ class Movies extends Component
         console.log("render");
         this.addToLists = this.getLists("added");
         this.selectedLists = this.getLists("selected");
+
         return ([
             this.props.page === "movies" ?
                 <Gallery
