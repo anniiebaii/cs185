@@ -9,7 +9,7 @@ class MoviesSearch extends Component
     constructor(props)
     {
         super(props);
-        this.state = {imdb: ""};
+        this.state = {keyword: ""};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -37,6 +37,8 @@ class MoviesSearch extends Component
     // @TODO check for char limits..
     handleSubmit = (event) => {
         // return set of movies with searched keyword
+        event.preventDefault();
+
     }
 
     componentDidUpdate()
@@ -50,7 +52,7 @@ class MoviesSearch extends Component
         return (
             <div className="search-container">
                 <form className="search-bar" onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="Search.." name="search" onChange={this.handleChange}></input>
+                    <input type="text" placeholder="Search.." onChange={this.handleChange}></input>
                     <input type="submit" value="Go"/>
                 </form>
             </div>

@@ -142,6 +142,7 @@ class Movies extends Component
 
     handleSearch(movieSet) {
         // trigger display change
+        this.setState({content: movieSet});
     }
 
     render()
@@ -163,7 +164,7 @@ class Movies extends Component
                             <div className="dropdown">
                                 <a className="modal-button"
                                     id="add-to-list"
-                                    href="">Add to List</a>
+                                    >Add to List</a>
                                 <div className="dropdown-content">
                                     {this.addToLists}
                                 </div>
@@ -171,7 +172,7 @@ class Movies extends Component
                             <a className="modal-button"
                                 id="delete"
                                 onClick={this.deleteMovie}
-                                href="">Delete</a>
+                                >Delete</a>
                         </div>
                     }
                     header={

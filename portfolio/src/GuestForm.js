@@ -47,6 +47,7 @@ class GuestForm extends Component<GuestFormProps, GuestFormState>
 
     // @TODO check for char limits..
     handleSubmit = (event) => {
+        event.preventDefault();
 
         const firebase = require('firebase');
 
