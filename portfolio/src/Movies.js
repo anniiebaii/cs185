@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Gallery from './Gallery';
 import MoviesAdd from './MoviesAdd';
 import MoviesList from './MoviesLists';
+import MoviesSearch from './MoviesSearch';
 import movies from './movie_list.json';
 import config from './config.js';
 import './Movies.css';
@@ -124,19 +125,6 @@ class Movies extends Component
                         href="">{childSnapshot.key}</a>);
              });
         });
-
-
-
-        // lists.push(
-        //     <a className="sub-button"
-        //        id="add-movies-action"
-        //        onClick={onClick}
-        //        href="#add-movie">Stub WannaWatch</a>);
-        // lists.push(
-        //     <a className="sub-button"
-        //        id="delete-movies-action"
-        //        onClick={onClick}
-        //        href="#delete-movie">Stub Watched</a>);
         return lists;
     }
 
@@ -189,6 +177,7 @@ class Movies extends Component
                                     {this.selectedLists}
                                 </div>
                             </div>
+                            <MoviesSearch source={this.props.source}/>
                         </div>}/> :
             (this.props.page === "add-movies" ?
                 <MoviesAdd/> :
