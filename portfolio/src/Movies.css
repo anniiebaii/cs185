@@ -84,8 +84,3 @@ input[type=submit]:hover {
     padding: 15px;
     display: inline-block;
 }
-
-.search-container button, input {
-  width: 100%;
-  float:right;
-}

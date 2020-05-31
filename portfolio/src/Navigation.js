@@ -51,6 +51,7 @@ var movies_list = retrieveMovieInfo();
 class Navigation extends Component<NavigationProps, NavigationState> {
     constructor(props: NavigationProps) {
         super(props);
+        console.log(props);
         console.log("contruct");
         this.state = {page: "home", component: undefined, disableScroll: false};
         this.changeTabs = this.changeTabs.bind(this);
@@ -125,45 +126,45 @@ class Navigation extends Component<NavigationProps, NavigationState> {
               <li><a className={this.state.page === "home" ? "active-button" : "button" }
                      id="home"
                      onClick={this.changeTabs}
-                     href="#">Home</a></li>
+                     >Home</a></li>
               {/* Lionel Pix & Videos / Life Updates */}
               <li><a className={this.state.page === "gallery" ? "active-button" : "button" }
                      id="gallery"
                      onClick={this.changeTabs}
-                     href="#">Gallery</a></li>
+                     >Gallery</a></li>
               {/* SpeedChess, ThinkFast, Bankteller Screenshots/Boomberang Demos */}
               <li><a className={this.state.page === "projects" ? "active-button" : "button" }
                      id="projects"
                      onClick={this.changeTabs}
-                     href="#">Projects</a></li>
+                     >Projects</a></li>
               {/* Assignmnent 5 */}
               <li><a className={this.state.page === "guest_book" ? "active-button" : "button" }
                      id="guest_book"
                      onClick={this.changeTabs}
-                     href="#">Guest Book</a></li>
+                     >Guest Book</a></li>
              {/* Assignment 6 */}
              <li>
                 <div className="dropdown">
                     <a className={(this.movieOptions.includes(this.state.page)) ? "active-button" : "button" }
                         id="movies"
                         onClick={this.changeTabs}
-                        href="#">Movies</a>
+                        >Movies</a>
                     <div className="dropdown-content">
                         <a className={this.state.page === "add-movies" ? "active-button" : "sub-button" }
                            id="add-movies"
                            onClick={this.changeTabs}
-                           href="#add-movie">Add Movies</a>
+                           >Add Movies</a>
                         <a className={this.state.page === "create-movies-list" ? "active-button" : "sub-button" }
                            id="create-movies-list"
                            onClick={this.changeTabs}
-                           href="#create-movies-list">New Movie Lists</a>
+                           >New Movie Lists</a>
                     </div>
                 </div></li>
               {/* Intro, hobbies, next steps ==> Pic */}
              <li><a className={this.state.page === "about" ? "active-button" : "button" }
                     id="about"
                     onClick={this.changeTabs}
-                    href="#">About</a></li>
+                    >About</a></li>
              <li><a className={this.state.page === "github" ? "active-button" : "button" }
                     id="github"
                     href="https://github.com/anniiebaii/portfolio">Github</a></li>

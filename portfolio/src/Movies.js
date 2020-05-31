@@ -16,7 +16,7 @@ class Movies extends Component
         super(props);
         console.log(props);
 
-        this.state = {page: this.props.state, list: "All", selected: null}
+        this.state = {page: this.props.state, list: "All", selected: null, content: this.props.source}
         this.changeList = this.changeList.bind(this);
         this.deleteMovie = this.deleteMovie.bind(this);
         this.handleListChange = this.handleListChange.bind(this);
@@ -26,6 +26,8 @@ class Movies extends Component
         this.deselect = this.deselect.bind(this);
 
         this.selected = null;
+
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
     _refresh()
@@ -91,7 +93,8 @@ class Movies extends Component
     }
 
     handleListChange = (event : any) => {
-        alert("STUB: reloaded to display " + event.target.id);
+        // alert("STUB: reloaded to display " + event.target.id);
+        this.setState({content:[]});
     }
 
     getLists(type)
@@ -122,7 +125,7 @@ class Movies extends Component
                      <a className="sub-button"
                         id={childSnapshot.key}
                         onClick={onClick}
-                        href="">{childSnapshot.key}</a>);
+                        >{childSnapshot.key}</a>);
              });
         });
         return lists;
@@ -137,6 +140,10 @@ class Movies extends Component
         this.setState({selected: null});
     }
 
+    handleSearch(movieSet) {
+        // trigger display change
+    }
+
     render()
     {
         console.log("render");
@@ -145,7 +152,7 @@ class Movies extends Component
         return ([
             this.props.page === "movies" ?
                 <Gallery
-                    source={this.props.source}
+                    source={this.state.content}
                     local={false}
                     openModalCallback={this.props.openModalCallback}
                     openModalUpdate={this.select}
@@ -156,7 +163,7 @@ class Movies extends Component
                             <div className="dropdown">
                                 <a className="modal-button"
                                     id="add-to-list"
-                                    href="#">Add to List</a>
+                                    href="">Add to List</a>
                                 <div className="dropdown-content">
                                     {this.addToLists}
                                 </div>
@@ -164,7 +171,7 @@ class Movies extends Component
                             <a className="modal-button"
                                 id="delete"
                                 onClick={this.deleteMovie}
-                                href="#">Delete</a>
+                                href="">Delete</a>
                         </div>
                     }
                     header={
@@ -172,12 +179,12 @@ class Movies extends Component
                             <div className="dropdown" style={{width: "auto", backgroundColor: "#d3d3d3", margin: "15px"}}>
                                 <a className="button"
                                     id="movies"
-                                    href="#">{this.state.list}</a>
+                                    >{this.state.list}</a>
                                 <div className="dropdown-content">
                                     {this.selectedLists}
                                 </div>
                             </div>
-                            <MoviesSearch source={this.props.source}/>
+                            <MoviesSearch source={this.props.source} callBack={this.handleSearch}/>
                         </div>}/> :
             (this.props.page === "add-movies" ?
                 <MoviesAdd/> :
