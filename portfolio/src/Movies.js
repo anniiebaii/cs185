@@ -7,6 +7,7 @@ import RetrieveMovieInfo from './RetrieveMovieInfo';
 import movies from './movie_list.json';
 import config from './config.js';
 import './Movies.css';
+import RetrieveMovieLists from './RetrieveMovieLists';
 
 // Controller for Movies tab
     // Handles switching of panes
@@ -20,9 +21,10 @@ class Movies extends Component
 
         this.state = {page: this.props.state, list: "All", selected: null, content: this.props.source};
         
-        this.changeList = this.changeList.bind(this);
         this.deleteMovie = this.deleteMovie.bind(this);
+        this.addMovieToList = this.addMovieToList.bind(this);
         this.handleListChange = this.handleListChange.bind(this);
+        
         this.getLists = this.getLists.bind(this);
 
         this.select = this.select.bind(this);
@@ -38,16 +40,11 @@ class Movies extends Component
     {
         this.render();
     }
-    // @TODO add dropdown to select movie list to display (default: "All")
-    // @TODO add search bar
-    // Pagination
+    // @TODO Fix pre-rendering of movie lists
+    // @TODO Display movies in selected list
+    // @TODO Pagination
 
-    changeList = (event) => {
-        console.log(event.target.id);
-        console.log(event.target);
 
-        // this.setState({page: event.target.id}, this._refresh);
-    }
 
     componentDidUpdate(prevProps)
     {
@@ -83,7 +80,7 @@ class Movies extends Component
         this.setState( stateObject, this.render);
     }
 
-    addToLists = (event) => {
+    addMovieToList = (event) => {
         if (this.state.selected === null)
         {
             alert("Error adding to list..");
@@ -99,14 +96,11 @@ class Movies extends Component
         // Get Reference to Data in Firebase
         var movieRef = firebase.database().ref('MovieLists/' + event.target.id).push().set(this.state.selected);
 
-        alert("Delete Sucessful");
+        alert("TODO: Added to " + event.target.id);
         this.setState({selected: null});
-        alert("STUB: Added to " + event.target.id);
-
     }
 
     handleListChange = (event) => {
-        // alert("STUB: reloaded to display " + event.target.id);
         var content = [];
         let list_val = event.target.id;
         var stateObject = function() {
@@ -120,58 +114,27 @@ class Movies extends Component
         this.setState( stateObject);
     }
 
-    getLists(type)
+    getLists(onClick)
     {
         var curr_list = this.state.list;
-        var lists = [];
-        var onClick = this.handleListChange;
-        if (type == "added")
-        {
-            onClick = this.addToLists;
-        }
+        var allLists = [];
+        var lists = RetrieveMovieLists();
+        lists.forEach((item) =>
+            {
+                if (curr_list !== item)
+                {
+                    console.log(item);
+                    allLists.push(
+                        <a className="sub-button"
+                        id={item}
+                        onClick={onClick}
+                        >{item}</a>);
 
-        if (this.state.list !== "All")
-        {
-            lists.push(
-                <a className="sub-button"
-                   id="All"
-                   onClick={onClick}
-                   >All</a>);
-        }
-
-
-        const firebase = require('firebase');
-
-        if (!firebase.apps.length) {
-           firebase.initializeApp(config)
-        }
-        var movieListsRef = firebase.database().ref("MovieLists");
-        console.log(movieListsRef);
-
-        //retrieve its data
-        movieListsRef.on('value', snapshot => {
-             //this is your call back function
-        		 //state will be a JSON object after this
-             //set your apps state to contain this data however you like
-             // const state = snapshot.val()
-             snapshot.forEach(function (childSnapshot) {
-                 {
-                     if (curr_list !== childSnapshot.key)
-                     {
-                         lists.push(
-                             <a className="sub-button"
-                                id={childSnapshot.key}
-                                onClick={onClick}
-                                >{childSnapshot.key}</a>);
-
-                     }
-
-
-                 }
-
-             });
-         });
-        return lists;
+                }
+            }
+        );
+        console.log(allLists);
+        return allLists;
     }
 
     select(movie){
@@ -210,8 +173,10 @@ class Movies extends Component
     render()
     {
         console.log("render");
-        this.addToLists = this.getLists("added");
+        this.addToLists =  this.getLists(this.addMovieToList);
         this.selectedLists = this.getLists("selected");
+
+       
 
         console.log(this.state.content);
 
