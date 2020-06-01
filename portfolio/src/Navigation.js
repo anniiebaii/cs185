@@ -176,6 +176,7 @@ class Navigation extends Component<NavigationProps, NavigationState> {
             {this.state.page === "gallery" ? <Gallery
                                                 source={images}
                                                 local={true}
+                                                moda={undefined}
                                                 openModalCallback={this.disableScroll}
                                                 closeModalCallback={this.enableScroll}
                                                 header={<h2 className="subheader">Gallery</h2>}/> :

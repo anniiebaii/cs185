@@ -3,6 +3,7 @@ import Gallery from './Gallery';
 import MoviesAdd from './MoviesAdd';
 import MoviesList from './MoviesLists';
 import MoviesSearch from './MoviesSearch';
+import retrieveMovieInfo from './MoviesFunctions';
 import movies from './movie_list.json';
 import config from './config.js';
 import './Movies.css';
@@ -67,7 +68,15 @@ class Movies extends Component
         var movieRef = firebase.database().ref('Movies/' + this.state.selected);
         movieRef.remove();
         alert("Delete Sucessful");
-        this.setState({selected: null});
+
+        var stateObject = function() {
+            var returnObj = {};
+            returnObj["selected"] = null;
+            returnObj["content"] = retrieveMovieInfo();
+               return returnObj;
+          }();
+  
+        this.setState( stateObject, this.render);
     }
 
     addToLists = (event) => {
@@ -182,11 +191,14 @@ class Movies extends Component
         this.addToLists = this.getLists("added");
         this.selectedLists = this.getLists("selected");
 
+        console.log(this.state.content);
+
         return ([
             this.props.page === "movies" ?
                 <Gallery
                     source={this.state.content}
                     local={false}
+                    modal={undefined}
                     openModalCallback={this.props.openModalCallback}
                     openModalUpdate={this.select}
                     closeModalCallback={this.props.closeModalCallback}

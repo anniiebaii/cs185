@@ -61,6 +61,13 @@ class Gallery extends Component{
             this.props.closeModalCallback();
             this.setState({modal: undefined}, this._refresh);
         }
+
+        if (this.state.modal !== undefined && event.target.id === "delete")
+        {
+            console.log("tried to del");
+            this.props.closeModalCallback();
+            this.setState({modal: undefined}, this._refresh);
+        }
     }
 
     openModal = (event : any) => {
