@@ -3,7 +3,7 @@ import Gallery from './Gallery';
 import MoviesAdd from './MoviesAdd';
 import MoviesList from './MoviesLists';
 import MoviesSearch from './MoviesSearch';
-import retrieveMovieInfo from './MoviesFunctions';
+import RetrieveMovieInfo from './RetrieveMovieInfo';
 import movies from './movie_list.json';
 import config from './config.js';
 import './Movies.css';
@@ -31,6 +31,7 @@ class Movies extends Component
         this.selected = null;
 
         this.handleSearch = this.handleSearch.bind(this);
+        this.allMovies = this.props.source;
     }
 
     _refresh()
@@ -50,6 +51,7 @@ class Movies extends Component
 
     componentDidUpdate(prevProps)
     {
+        this.allMovies = RetrieveMovieInfo();
         this.render();
     }
 
@@ -74,7 +76,7 @@ class Movies extends Component
         var stateObject = function() {
             var returnObj = {};
             returnObj["selected"] = null;
-            returnObj["content"] = retrieveMovieInfo();
+            returnObj["content"] = RetrieveMovieInfo();
                return returnObj;
           }();
   

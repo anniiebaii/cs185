@@ -6,7 +6,7 @@ import Gallery from './Gallery';
 import Home from './Home';
 import BackToTop from './BackToTop';
 import GuestBook from './GuestBook';
-import retrieveMovieInfo from './MoviesFunctions';
+import RetrieveMovieInfo from './RetrieveMovieInfo';
 import Movies from './Movies';
 
 
@@ -53,7 +53,7 @@ class Navigation extends Component {
 
         this.movieOptions = ['movies', 'add-movies', 'create-movies-list'];
 
-        this.moviesSet = retrieveMovieInfo();
+        this.moviesSet = RetrieveMovieInfo();
     }
 
     scrollFunction() {
@@ -112,7 +112,7 @@ class Navigation extends Component {
 
   render() {
       console.log("NAv render");
-      this.moviesSet = retrieveMovieInfo();
+      this.moviesSet = RetrieveMovieInfo();
       return ([
           <div className="navigation-container" key="TabList">
             <ul className="navigation">

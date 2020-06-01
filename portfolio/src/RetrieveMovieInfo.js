@@ -8,7 +8,7 @@ import config from './config.js';
 
 const axios = require('axios');
 
-function retrieveMovieInfo(listname="")
+function RetrieveMovieInfo(listname="")
 {
     const firebase = require('firebase');
 
@@ -69,4 +69,4 @@ function retrieveMovieInfo(listname="")
     return dataSet;
 }
 
-export default retrieveMovieInfo;
+export default RetrieveMovieInfo;
