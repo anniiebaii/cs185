@@ -1,36 +1,3 @@
-.modal-button {
-    display: block;
-    color: #2d4829;
-    text-align: center;
-    padding: 10px;
-    text-decoration: none;
-    overflow: "display";
-    background-color: #d3d3d3;
-    width: 100%;
-}
-.modal-button:hover:not(.active) {
-  background-color: #f1e4d3;
-}
-
-.modal-button:active {
-  background-color: #f1e4d3;
-}
-
-.dropdown:hover .modal-button {
-    background-color: #f1e4d3;
-}
-
-
-#delete.modal-button:hover:not(.active) {
-    background-color: #ff6e6e;
-}
-
-.modal-options {
-    padding: 15px;
-    display: flex;
-    width: 100%;
-}
-
 .add-movie-form {
     float: left;
     width: 100%;
