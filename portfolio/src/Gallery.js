@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
 
-type GalleryProps = {
-    source: any;
-    header: any;
-    modalOptions: any;
-    closeModalCallback: any;
-    openModalCallback: any;
-    pagination_number: integer;
-}
-
-type GalleryState = {
-    select: any
-}
 class Gallery extends Component{
     constructor(props) {
         super(props);
@@ -26,7 +14,7 @@ class Gallery extends Component{
         // handle modalButtons
     }
 
-    _refresh = (props?: GalleryProps) => {
+    _refresh = (props) => {
         if (props === undefined)
         {
             props = this.props;
@@ -44,7 +32,7 @@ class Gallery extends Component{
         document.addEventListener('click', this.closeModal());
     }
 
-    closeModal = (event: any) => {
+    closeModal = (event) => {
         if (this.state.modal !== undefined)
         {
             console.log(event.target.id);
@@ -70,7 +58,7 @@ class Gallery extends Component{
         }
     }
 
-    openModal = (event : any) => {
+    openModal = (event) => {
         console.log("CLICKED MODAL");
         console.log(this.props.modalButtons);
         console.log(event.target.key);

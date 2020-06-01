@@ -9,6 +9,7 @@ import './Movies.css';
 import config from './config.js'
 
 const axios = require('axios');
+const firebase = require('firebase');
 
 class MoviesAdd extends Component
 {
@@ -18,12 +19,30 @@ class MoviesAdd extends Component
         this.state = {imdb: ""};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.exists = this.exists.bind(this);
 
     }
 
     _refresh()
     {
 
+    }
+
+    exists(imdb)
+    {
+        var exists = false;
+        if (!firebase.apps.length) {
+            firebase.initializeApp(config)
+        }
+
+        var ref = firebase.database().ref('Movies/' + imdb).once("value", snapshot => {
+            if (snapshot.exists()){
+                console.log("exists!");
+                exists = true;
+            }
+        });
+
+        return exists;
     }
 
     handleChange = (event) => {
@@ -40,17 +59,21 @@ class MoviesAdd extends Component
         this.setState( stateObject);
     }
 
-    // @TODO check for char limits..
     handleSubmit = (event) => {
         event.preventDefault();
 
-        const firebase = require('firebase');
         var imdb = this.state.imdb;
         var success = false;
 
+        console.log(this.exists(imdb));
+
         if (this.state.imdb === "")
         {
-            alert("IMDBbID cannot be empty!");
+            alert("IMDbID cannot be empty!");
+        }
+        else if (this.exists(imdb) === true)
+        {
+            alert("A Movie with this IMDBbID already exists!");
         }
         else
         {
@@ -58,8 +81,7 @@ class MoviesAdd extends Component
                firebase.initializeApp(config)
             }
 
-            // Send Data to Firebase
-            //
+            // Ping axios API for info
             axios.get('https://www.omdbapi.com/?apikey=d7201b9b&i=' + imdb)
               .then(function (response) {
                   console.log(response);
@@ -69,13 +91,11 @@ class MoviesAdd extends Component
                       return;
                   }
                 // handle success
-                // console.log(response);
                 var item = {};
                 item["id"] = imdb;
                 item["title"] = response.data.Title;
                 item["filename"] = response.data.Poster;
                 item["caption"] = response.data.Title + " | Director(s): " + response.data.Director + " | IMDB Rating: " + response.data.imdbRating;
-                // var test = {name:"Ying", message: "yur", anon: false}
                 var jsonBody = JSON.stringify(item);
                 // Send Data to Firebase
                 firebase.database().ref('Movies/' + item["id"]).set(jsonBody, function(res) {
@@ -115,7 +135,7 @@ class MoviesAdd extends Component
         return (
             <form className="add-movie-form" onSubmit={this.handleSubmit}>
                 <label key="name">
-                    IMDBbID:
+                    IMDbID:
                     <input id="imdb"
                            type="text"
                            style={{width: "99%"}}
