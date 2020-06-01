@@ -50,7 +50,7 @@
   padding: 12px 20px;
   margin: 8px 0;
   float:left;
-  display: inline-block;
+  /* display: inline-block; */
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
@@ -82,5 +82,5 @@ input[type=submit]:hover {
     width: auto;
     float: right;
     /* padding: 15px; */
-    display: inline-block;
+    /* display: inline-block; */
 }

@@ -38,7 +38,7 @@ class Movies extends Component
     // @TODO add search bar
     // Pagination
 
-    changeList = (event : any) => {
+    changeList = (event) => {
         console.log(event.target.id);
         console.log(event.target);
 
@@ -50,7 +50,7 @@ class Movies extends Component
         this.render();
     }
 
-    deleteMovie = (event : any) => {
+    deleteMovie = (event) => {
         if (this.state.selected === null)
         {
             alert("Error deleting..");
@@ -70,7 +70,7 @@ class Movies extends Component
         this.setState({selected: null});
     }
 
-    addToLists = (event : any) => {
+    addToLists = (event) => {
         if (this.state.selected === null)
         {
             alert("Error adding to list..");
@@ -92,7 +92,7 @@ class Movies extends Component
 
     }
 
-    handleListChange = (event : any) => {
+    handleListChange = (event) => {
         // alert("STUB: reloaded to display " + event.target.id);
         var content = [];
         let list_val = event.target.id;
