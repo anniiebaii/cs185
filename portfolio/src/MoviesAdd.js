@@ -120,7 +120,7 @@ class MoviesAdd extends Component
               });
 
             // this.props.callBack();
-
+            this.setState({imdb: ""});
         }
     }
 

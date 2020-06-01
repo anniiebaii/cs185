@@ -3,15 +3,11 @@
 // Default List: "All"
 // Default Lists: "Watched", "WannaWatch"
 
-// 1.1 Add new movie
-// New page
-// Input: IMDBbID
-// Action: Add indicated movie into firebase
-    // Make sure there's no duplicates
-
 import React, {Component} from 'react';
 import './Movies.css';
 import config from './config.js'
+
+const firebase = require('firebase');
 
 class MoviesList extends Component
 {
@@ -21,12 +17,30 @@ class MoviesList extends Component
         this.state = {list_name: ""};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.exists = this.exists.bind(this);
 
     }
 
     _refresh()
     {
 
+    }
+
+    exists(list_name)
+    {
+        var exists = false;
+        if (!firebase.apps.length) {
+            firebase.initializeApp(config)
+        }
+
+        var ref = firebase.database().ref('MovieLists/' + list_name).once("value", snapshot => {
+            if (snapshot.exists()){
+                console.log("exists!");
+                exists = true;
+            }
+        });
+
+        return exists;
     }
 
     handleChange = (event) => {
@@ -46,11 +60,15 @@ class MoviesList extends Component
     // @TODO check for char limits..
     handleSubmit = (event) => {
 
-        const firebase = require('firebase');
-
-        if (this.state.imdb === "")
+        if (this.state.list_name === "")
         {
             alert("Movie List's Name cannot be empty!");
+            event.preventDefault();
+        }
+        else if (this.exists(this.state.list_name))
+        {
+            alert("A Movie List with this name already exists!");
+            event.preventDefault();
         }
         else
         {
@@ -65,7 +83,6 @@ class MoviesList extends Component
 
             // this.props.callBack();
             alert("Submission Sucessful");
-
             this.setState({list_name: ""});
         }
 
