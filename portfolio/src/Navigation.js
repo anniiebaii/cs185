@@ -38,8 +38,6 @@ const images = [
     }
 ]
 
-var movies_list = retrieveMovieInfo();
-
 class Navigation extends Component {
     constructor(props) {
         super(props);
@@ -54,6 +52,8 @@ class Navigation extends Component {
         this.scrollPosition = 0;
 
         this.movieOptions = ['movies', 'add-movies', 'create-movies-list'];
+
+        this.moviesSet = retrieveMovieInfo();
     }
 
     scrollFunction() {
@@ -112,7 +112,7 @@ class Navigation extends Component {
 
   render() {
       console.log("NAv render");
-      console.log(movies_list);
+      this.moviesSet = retrieveMovieInfo();
       return ([
           <div className="navigation-container" key="TabList">
             <ul className="navigation">
@@ -178,7 +178,7 @@ class Navigation extends Component {
             (this.state.page === "guest_book" ? <GuestBook/> :
             ((this.movieOptions.includes(this.state.page)) ?
                 <Movies
-                    
+                    source={this.moviesSet}
                     page={this.state.page}
                     openModalCallback={this.disableScroll}
                     closeModalCallback={this.enableScroll}/> : <Home/>))))}

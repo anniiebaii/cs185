@@ -15,10 +15,11 @@ class Movies extends Component
     constructor(props)
     {
         super(props);
+        console.log("Movies construct");
         console.log(props);
-        var movies = retrieveMovieInfo();
 
-        this.state = {page: this.props.state, list: "All", selected: null, content: movies};
+        this.state = {page: this.props.state, list: "All", selected: null, content: this.props.source};
+        
         this.changeList = this.changeList.bind(this);
         this.deleteMovie = this.deleteMovie.bind(this);
         this.handleListChange = this.handleListChange.bind(this);
@@ -30,8 +31,6 @@ class Movies extends Component
         this.selected = null;
 
         this.handleSearch = this.handleSearch.bind(this);
-
-        
     }
 
     _refresh()
@@ -51,11 +50,7 @@ class Movies extends Component
 
     componentDidUpdate(prevProps)
     {
-        if (this.state.content !== prevProps.content)
-        {
-            this.render();
-
-        }
+        this.render();
     }
 
     deleteMovie = (event) => {
@@ -192,6 +187,24 @@ class Movies extends Component
         this.setState({content: movieSet});
     }
 
+    sanitizeContent(content)
+    {
+        var newKeys = [];
+        var sanitizeContent = [];
+        content.forEach((item) =>
+            {
+                if (!newKeys.includes(item.id))
+                {
+                    newKeys.push(item.id);
+                    sanitizeContent.push(item);
+                }
+            }
+        );
+
+        return sanitizeContent;
+
+    }
+
     render()
     {
         console.log("render");
@@ -205,7 +218,7 @@ class Movies extends Component
         return ([
             this.props.page === "movies" ?
                 <Gallery
-                    source={this.state.content}
+                    source={this.sanitizeContent(this.state.content)}
                     local={false}
                     modal={undefined}
                     openModalCallback={this.props.openModalCallback}

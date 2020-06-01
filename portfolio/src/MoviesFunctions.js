@@ -67,8 +67,6 @@ function retrieveMovieInfo(listname="")
 
 
     return dataSet;
-
-
 }
 
 export default retrieveMovieInfo;
