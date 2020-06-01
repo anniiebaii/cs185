@@ -44,6 +44,7 @@ function retrieveMovieInfo(listname="")
     // })
     
     
+    console.log("getting movies...");
 
     //get a reference to the database
     let ref = firebase.database().ref('Movies')

@@ -16,8 +16,9 @@ class Movies extends Component
     {
         super(props);
         console.log(props);
+        var movies = retrieveMovieInfo();
 
-        this.state = {page: this.props.state, list: "All", selected: null, content: this.props.source}
+        this.state = {page: this.props.state, list: "All", selected: null, content: movies};
         this.changeList = this.changeList.bind(this);
         this.deleteMovie = this.deleteMovie.bind(this);
         this.handleListChange = this.handleListChange.bind(this);
@@ -29,6 +30,8 @@ class Movies extends Component
         this.selected = null;
 
         this.handleSearch = this.handleSearch.bind(this);
+
+        
     }
 
     _refresh()
@@ -46,9 +49,13 @@ class Movies extends Component
         // this.setState({page: event.target.id}, this._refresh);
     }
 
-    componentDidUpdate()
+    componentDidUpdate(prevProps)
     {
-        this.render();
+        if (this.state.content !== prevProps.content)
+        {
+            this.render();
+
+        }
     }
 
     deleteMovie = (event) => {
@@ -192,6 +199,8 @@ class Movies extends Component
         this.selectedLists = this.getLists("selected");
 
         console.log(this.state.content);
+
+        // Clean up in case of duplicates...
 
         return ([
             this.props.page === "movies" ?

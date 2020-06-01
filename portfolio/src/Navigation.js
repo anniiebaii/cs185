@@ -10,14 +10,6 @@ import retrieveMovieInfo from './MoviesFunctions';
 import Movies from './Movies';
 
 
-type NavigationProps = {
-    page: string;
-};
-
-type NavigationState= {
-    page: string;
-};
-
 const images = [
     {
         id: 'appa01.jpg',
@@ -48,8 +40,8 @@ const images = [
 
 var movies_list = retrieveMovieInfo();
 
-class Navigation extends Component<NavigationProps, NavigationState> {
-    constructor(props: NavigationProps) {
+class Navigation extends Component {
+    constructor(props) {
         super(props);
         console.log(props);
         console.log("contruct");
@@ -99,14 +91,14 @@ class Navigation extends Component<NavigationProps, NavigationState> {
         window.scrollTo(0, parseInt(this.scrollPosition));
     }
 
-    changeTabs = (event : any) => {
+    changeTabs = (event) => {
         console.log(event.target.id);
         console.log(event.target);
 
         this.setState({page: event.target.id}, this._refresh);
     }
 
-    _refresh = (props?: NavigationProps) => {
+    _refresh = (props) => {
         if (props === undefined)
         {
             props = this.props;
@@ -114,12 +106,13 @@ class Navigation extends Component<NavigationProps, NavigationState> {
         console.log(this.state);
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
         console.log(this.state);
     }
 
   render() {
-      console.log("NAv render")
+      console.log("NAv render");
+      console.log(movies_list);
       return ([
           <div className="navigation-container" key="TabList">
             <ul className="navigation">
@@ -185,7 +178,7 @@ class Navigation extends Component<NavigationProps, NavigationState> {
             (this.state.page === "guest_book" ? <GuestBook/> :
             ((this.movieOptions.includes(this.state.page)) ?
                 <Movies
-                    source={movies_list}
+                    
                     page={this.state.page}
                     openModalCallback={this.disableScroll}
                     closeModalCallback={this.enableScroll}/> : <Home/>))))}
