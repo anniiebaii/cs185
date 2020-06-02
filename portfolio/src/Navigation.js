@@ -9,6 +9,7 @@ import GuestBook from './GuestBook';
 import RetrieveMovieInfo from './RetrieveMovieInfo';
 import Movies from './Movies';
 import images from './images.json';
+import RetrieveMovieLists from './RetrieveMovieLists';
 
 class Navigation extends Component {
     constructor(props) {
@@ -26,6 +27,7 @@ class Navigation extends Component {
         this.movieOptions = ['movies', 'add-movies', 'create-movies-list'];
 
         this.moviesSet = RetrieveMovieInfo();
+        this.movieListsSet = RetrieveMovieLists();
     }
 
     scrollFunction() {
@@ -151,6 +153,7 @@ class Navigation extends Component {
             ((this.movieOptions.includes(this.state.page)) ?
                 <Movies
                     source={this.moviesSet}
+                    lists={this.movieListsSet}
                     page={this.state.page}
                     openModalCallback={this.disableScroll}
                     closeModalCallback={this.enableScroll}/> : <Home/>))))}

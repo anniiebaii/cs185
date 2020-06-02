@@ -19,7 +19,7 @@ class Movies extends Component
         console.log("Movies construct");
         console.log(props);
 
-        this.state = {page: this.props.state, list: "All", selected: null, content: this.props.source};
+        this.state = {page: this.props.state, list: "All", selected: null, content: this.props.source, lists: this.props.lists};
         
         this.deleteMovie = this.deleteMovie.bind(this);
         this.addMovieToList = this.addMovieToList.bind(this);
@@ -40,7 +40,6 @@ class Movies extends Component
     {
         this.render();
     }
-    // @TODO Fix pre-rendering of movie lists
     // @TODO Display movies in selected list
     // @TODO Pagination
 
@@ -74,6 +73,7 @@ class Movies extends Component
             var returnObj = {};
             returnObj["selected"] = null;
             returnObj["content"] = RetrieveMovieInfo();
+            returnObj["lists"] = RetrieveMovieLists();
                return returnObj;
           }();
   
@@ -108,6 +108,7 @@ class Movies extends Component
           console.log("list = " + list_val);
           returnObj["list"] = list_val;
           returnObj["content"] = content;
+          returnObj["lists"] = RetrieveMovieLists();
              return returnObj;
         }();
 
