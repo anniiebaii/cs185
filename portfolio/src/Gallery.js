@@ -91,6 +91,7 @@ class Gallery extends Component{
     // @TODO implement pagination using provided pagination_number
     render() {
         let images_list = [];
+        console.log(this.props.source);
         if (this.props.source)
         {
             this.props.source.forEach((item) =>

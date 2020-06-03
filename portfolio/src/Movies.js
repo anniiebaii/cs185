@@ -181,14 +181,14 @@ class Movies extends Component
         this.addToLists =  this.getLists(this.addMovieToList);
         this.selectedLists = this.getLists(this.handleListChange);
 
-        console.log(this.state.content);
+        console.log(Object.values(this.state.content));
 
         // Clean up in case of duplicates...
 
         return ([
             this.props.page === "movies" ?
                 <Gallery
-                    source={this.sanitizeContent(this.state.content)}
+                    source={this.sanitizeContent(Object.values(this.state.content))}
                     local={false}
                     modal={undefined}
                     openModalCallback={this.props.openModalCallback}
