@@ -271,7 +271,7 @@ class Movies extends Component
                                     {this.selectedLists}
                                 </div>
                             </div>
-                            <MoviesSearch source={this.props.source} callBack={this.handleSearch}/>
+                            <MoviesSearch source={this.state.content} callBack={this.handleSearch}/>
                         </div>}/> :
             (this.props.page === "add-movies" ?
                 <MoviesAdd/> :
