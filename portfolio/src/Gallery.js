@@ -8,10 +8,11 @@ class Gallery extends Component{
         console.log(props);
         this.state = {selected: undefined,
                       caption: undefined,
-                      modal: undefined}
+                      modal: undefined,
+                      page: 1}
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-
+        this.loadMore = this.loadMore.bind(this);
         // handle modalButtons
     }
 
@@ -88,6 +89,14 @@ class Gallery extends Component{
         )}, this._refresh);
     }
 
+    loadMore(event) {
+        if (this.props.source.length > this.state.page * 8)
+        {
+            var new_page = this.state.page + 1;
+            this.setState({page: new_page});
+        }
+    }
+
     // @TODO implement pagination using provided pagination_number
     render() {
         let images_list = [];
@@ -113,13 +122,26 @@ class Gallery extends Component{
             images_list.push(<h2 className="header" style={{align: "center"}}>No Results</h2>);
         }
 
-        return (
+        var end = false;
+        if (images_list.length <= this.state.page * 8)
+        {
+            end = true;
+        }
+
+        console.log("PAGE NUMBER: " + this.state.page);
+
+        return ([
             <div className="sub-page-container" onClick={this.closeModal}>
                 {this.props.header}
                 {this.state.modal}
-                {images_list}
+                {images_list.splice(0, this.state.page*8)}
+            </div>,
+            <div className="footer">
+                {end == false ?
+                <div className="button"
+                            onClick={this.loadMore}>Load More</div> : <div></div>}
             </div>
-        )
+        ])
     }
 }
 
