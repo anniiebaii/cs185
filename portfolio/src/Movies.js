@@ -72,14 +72,18 @@ class Movies extends Component
         delete content[code];
 
         console.log(content);
-        var listRef = firebase.database().ref('MovieLists/' + this.state.list);
-        listRef.set("");
 
-        for (const property in content)
+        if (this.state.list !== "All")
         {
-            listRef.push().set(property);
+            var listRef = firebase.database().ref('MovieLists/' + this.state.list);
+            listRef.set("");
+    
+            for (const property in content)
+            {
+                listRef.push().set(property);
+            }
         }
-
+        
         var stateObject = function() {
             var returnObj = {};
             returnObj["selected"] = null;

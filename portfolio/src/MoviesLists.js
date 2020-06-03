@@ -65,7 +65,7 @@ class MoviesList extends Component
         {
             alert("Movie List's Name cannot be empty!");
         }
-        else if (this.exists(this.state.list_name))
+        else if (this.exists(this.state.list_name) || this.state.list_name === "All")
         {
             alert("A Movie List with this name already exists!");
         }
