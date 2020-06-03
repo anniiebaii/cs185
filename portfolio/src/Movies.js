@@ -78,7 +78,6 @@ class Movies extends Component
         var stateObject = function() {
             var returnObj = {};
             returnObj["selected"] = null;
-            returnObj["list"] = "All";
             returnObj["content"] = content;
             returnObj["lists"] = RetrieveMovieLists();
                return returnObj;
