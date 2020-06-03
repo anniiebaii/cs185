@@ -40,17 +40,16 @@ class MoviesSearch extends Component
         event.preventDefault();
         console.log(this.state.keyword);
         var movieSet = [];
-        this.props.source.forEach((item) =>
+        for (const property in this.props.source)
+        {
+            var data = this.props.source[property];
+            var title = data.title.toLowerCase();
+            if (title.includes(this.state.keyword.toLowerCase()))
             {
-                var title = item.title.toLowerCase();
-                if (title.includes(this.state.keyword.toLowerCase()))
-                {
-                    console.log(title);
-                    movieSet.push(item);
-                }
+                console.log(title);
+                movieSet.push(data);
             }
-
-        );
+        }
         console.log(movieSet);
         this.props.callBack(movieSet);
 

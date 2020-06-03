@@ -237,6 +237,7 @@ class Movies extends Component
             this.props.page === "movies" ?
                 <Gallery
                     source={this.sanitizeContent(Object.values(this.state.content))}
+                    lists={this.state.content}
                     local={false}
                     modal={undefined}
                     openModalCallback={this.props.openModalCallback}
