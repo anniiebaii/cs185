@@ -43,8 +43,6 @@ class Movies extends Component
     // @TODO Display movies in selected list
     // @TODO Pagination
 
-
-
     componentDidUpdate(prevProps)
     {
         this.allMovies = RetrieveMovieInfo();
@@ -74,6 +72,13 @@ class Movies extends Component
         delete content[code];
 
         console.log(content);
+        var listRef = firebase.database().ref('MovieLists/' + this.state.list);
+        listRef.set("");
+
+        for (const property in content)
+        {
+            listRef.push().set(property);
+        }
 
         var stateObject = function() {
             var returnObj = {};
