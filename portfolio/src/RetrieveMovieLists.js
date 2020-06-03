@@ -19,6 +19,7 @@ function RetrieveMovieLists()
 
     console.log("getting movie lists...");
 
+    var data = {};
     var lists = [];
     var movieListsRef = firebase.database().ref("MovieLists");
     console.log(movieListsRef);
@@ -31,12 +32,15 @@ function RetrieveMovieLists()
          // const state = snapshot.val()
          snapshot.forEach(function (childSnapshot) {
              {
-                lists.push(childSnapshot.key);
+                var list_name = childSnapshot.key;
+                var movies = Object.values(childSnapshot.val());
+                data[list_name] = movies;
+                lists.push(list_name);
              }
 
          });
      });
-    return lists;
+    return data;
 }
 
 export default RetrieveMovieLists;

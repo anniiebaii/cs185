@@ -120,20 +120,24 @@ class Movies extends Component
         var curr_list = this.state.list;
         var allLists = [];
         var lists = RetrieveMovieLists();
-        lists.forEach((item) =>
-            {
-                if (curr_list !== item)
-                {
-                    console.log(item);
-                    allLists.push(
-                        <a className="sub-button"
-                        id={item}
-                        onClick={onClick}
-                        >{item}</a>);
 
-                }
+        for (const property in lists) 
+        {
+            var list_name = property;
+            var movies = lists[list_name];
+
+            console.log(`${list_name}: ${movies}`);
+            
+            if (curr_list !== list_name)
+            {
+                allLists.push(
+                    <a className="sub-button"
+                    id={list_name}
+                    onClick={onClick}
+                    >{list_name}</a>);
             }
-        );
+        }
+       
         console.log(allLists);
         return allLists;
     }
@@ -173,11 +177,9 @@ class Movies extends Component
 
     render()
     {
-        console.log("render");
+        console.log("movies render");
         this.addToLists =  this.getLists(this.addMovieToList);
-        this.selectedLists = this.getLists("selected");
-
-       
+        this.selectedLists = this.getLists(this.handleListChange);
 
         console.log(this.state.content);
 

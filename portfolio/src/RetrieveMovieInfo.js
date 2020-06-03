@@ -58,7 +58,8 @@ function RetrieveMovieInfo(listname="")
          //set your apps state to contain this data however you like
          // const state = snapshot.val()
          snapshot.forEach(function (childSnapshot) {
-             dataSet.push(JSON.parse(childSnapshot.val()));
+            // dataSet[childSnapshot.key] = childSnapshot.val();
+            dataSet.push(JSON.parse(childSnapshot.val()));
 
          });
     });
