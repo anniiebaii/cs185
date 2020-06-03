@@ -101,21 +101,42 @@ class Movies extends Component
     }
 
     handleListChange = (event) => {
+        event.preventDefault();
+        console.log("HANDLING list chnage");
         var content = [];
         let list_val = event.target.id;
+
         var stateObject = function() {
           var returnObj = {};
           console.log("list = " + list_val);
           returnObj["list"] = list_val;
-          returnObj["content"] = content;
           returnObj["lists"] = RetrieveMovieLists();
              return returnObj;
         }();
 
+        var lists = stateObject["lists"];
+        var movies = lists[list_val];
+        console.log(movies);
+        if (movies != undefined)
+        {
+            movies.forEach((item) => 
+            {
+                if (this.allMovies[item] !== undefined)
+                {
+                    content.push(this.allMovies[item]);
+                }
+            });
+        }
+        if (list_val === "All")
+        {
+            content = this.allMovies;
+        }
+        
+        stateObject["content"] = content;
         this.setState( stateObject);
     }
 
-    getLists(onClick)
+    getLists(handler)
     {
         var curr_list = this.state.list;
         var allLists = [];
@@ -133,8 +154,16 @@ class Movies extends Component
                 allLists.push(
                     <a className="sub-button"
                     id={list_name}
-                    onClick={onClick}
+                    onClick={handler}
                     >{list_name}</a>);
+            }
+            if (curr_list !== "All" && handler != this.addMovieToList)
+            {
+                allLists.push(
+                    <a className="sub-button"
+                    id="All"
+                    onClick={handler}
+                    >All</a>);
             }
         }
        
@@ -161,16 +190,16 @@ class Movies extends Component
     {
         var newKeys = [];
         var sanitizeContent = [];
-        content.forEach((item) =>
+        for (const property in content) 
+        {
+            var data = content[property];
+            if (!newKeys.includes(data.id))
             {
-                if (!newKeys.includes(item.id))
-                {
-                    newKeys.push(item.id);
-                    sanitizeContent.push(item);
-                }
+                    newKeys.push(data.id);
+                    sanitizeContent.push(data);
             }
-        );
-
+        }
+    
         return sanitizeContent;
 
     }
@@ -182,6 +211,7 @@ class Movies extends Component
         this.selectedLists = this.getLists(this.handleListChange);
 
         console.log(Object.values(this.state.content));
+        console.log(this.selectedLists);
 
         // Clean up in case of duplicates...
 
@@ -215,7 +245,8 @@ class Movies extends Component
                         <div className="page-header">
                             <div className="dropdown" style={{width: "auto", backgroundColor: "#d3d3d3", margin: "15px"}}>
                                 <a className="button"
-                                    id="movies"
+                                    id={this.state.list}
+                                    onClick={this.handleListChange}
                                     >{this.state.list}</a>
                                 <div className="dropdown-content">
                                     {this.selectedLists}

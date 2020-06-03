@@ -49,7 +49,7 @@ function RetrieveMovieInfo(listname="")
     //get a reference to the database
     let ref = firebase.database().ref('Movies')
     let data = [];
-    let dataSet = [];
+    let dataSet = {};
 
     //retrieve its data
     ref.on('value', snapshot => {
