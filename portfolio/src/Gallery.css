@@ -1,0 +1,140 @@
+/* ------ The Modal Element Styles ------ */
+.modal-image {
+    height: 300px;
+    width: 200px;
+    max-width: 200px;
+    max-height: 300px;
+    float: left;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    display: block;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  
+  }
+  
+  img.modal-image:hover {
+      opacity: 0.7;
+  }
+  
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hide until clicked */
+    position: fixed;
+    z-index: 1; /* Overlay other elements on page */
+    padding-top: 100px;
+    /* padding-bottom: 500px; */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll; /* Allow scrolling if needed */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  }
+  
+  /* Modal Content Display (image) */
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: auto;
+    height: auto;
+    min-height: 70%;
+    max-width: 80%;
+    max-height: 80%;
+    padding-bottom: 10px;
+  }
+  
+  /* Caption of Modal Image */
+  #caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px;
+    padding-bottom: 30px;
+    height: 150px;
+  }
+  
+  /* Modal Animation */
+  .modal-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+  
+  @keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+  }
+  
+  /* The Close Button */
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  .close:hover, .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer; /* Show a clicker instead of highlighting icon */
+  }
+  
+  /* 100% Image Width on Smaller Screens */
+  /* @media only screen and (max-width: 700px){
+    .modal-content {
+      width: 100%;
+    }
+  }
+  @-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+  }
+  
+  */
+  
+.modal-button {
+    display: block;
+    color: #2d4829;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    overflow: "display";
+    background-color: #d3d3d3;
+    width: 100%;
+    z-index: 2;
+}
+.modal-button:hover:not(.active) {
+  background-color: #f1e4d3;
+}
+
+.modal-button:active {
+  background-color: #f1e4d3;
+}
+
+.dropdown:hover .modal-button {
+    background-color: #f1e4d3;
+}
+
+
+#delete.modal-button:hover:not(.active) {
+    background-color: #ff6e6e;
+}
+
+.modal-options {
+    padding: 15px;
+    display: flex;
+    width: 100%;
+    padding-bottom: 500px;
+    z-index: 2;
+}
