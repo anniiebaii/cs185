@@ -69,13 +69,22 @@ class Movies extends Component
         movieRef.remove();
         alert("Delete Sucessful");
 
+        var content = this.state.content;
+        var code = this.state.selected;
+        delete content[code];
+
+        console.log(content);
+
         var stateObject = function() {
             var returnObj = {};
             returnObj["selected"] = null;
-            returnObj["content"] = RetrieveMovieInfo();
+            returnObj["list"] = "All";
+            returnObj["content"] = content;
             returnObj["lists"] = RetrieveMovieLists();
                return returnObj;
           }();
+
+        this.allMovies = RetrieveMovieInfo();
   
         this.setState( stateObject, this.render);
     }
@@ -103,7 +112,7 @@ class Movies extends Component
     handleListChange = (event) => {
         event.preventDefault();
         console.log("HANDLING list chnage");
-        var content = [];
+        var content = {};
         let list_val = event.target.id;
 
         var stateObject = function() {
@@ -123,7 +132,7 @@ class Movies extends Component
             {
                 if (this.allMovies[item] !== undefined)
                 {
-                    content.push(this.allMovies[item]);
+                    content[item] = this.allMovies[item];
                 }
             });
         }
@@ -157,7 +166,9 @@ class Movies extends Component
                     onClick={handler}
                     >{list_name}</a>);
             }
-            if (curr_list !== "All" && handler != this.addMovieToList)
+        }
+
+        if (curr_list !== "All" && handler != this.addMovieToList)
             {
                 allLists.push(
                     <a className="sub-button"
@@ -165,7 +176,6 @@ class Movies extends Component
                     onClick={handler}
                     >All</a>);
             }
-        }
        
         console.log(allLists);
         return allLists;

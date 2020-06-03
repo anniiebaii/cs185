@@ -59,16 +59,15 @@ class MoviesList extends Component
 
     // @TODO check for char limits..
     handleSubmit = (event) => {
+        event.preventDefault();
 
         if (this.state.list_name === "")
         {
             alert("Movie List's Name cannot be empty!");
-            event.preventDefault();
         }
         else if (this.exists(this.state.list_name))
         {
             alert("A Movie List with this name already exists!");
-            event.preventDefault();
         }
         else
         {
