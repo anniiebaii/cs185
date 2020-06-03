@@ -39,6 +39,11 @@ class MoviesSearch extends Component
         // return set of movies with searched keyword
         event.preventDefault();
         console.log(this.state.keyword);
+        if (this.state.keyword === "")
+        {
+            this.props.callBack(false);
+            return;
+        }
         var movieSet = [];
         for (const property in this.props.source)
         {

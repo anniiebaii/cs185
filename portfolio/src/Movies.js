@@ -201,6 +201,30 @@ class Movies extends Component
     handleSearch(movieSet) {
         // trigger display change
         console.log("handleSearch");
+        if (movieSet === false)
+        {
+            movieSet = {};
+            let list = this.state.list;
+            var lists = this.state.lists;
+            console.log(list);
+            console.log(lists);
+            var movies = lists[list];
+            console.log(movies);
+            if (movies != undefined)
+            {
+                movies.forEach((item) => 
+                {
+                    if (this.allMovies[item] !== undefined)
+                    {
+                        movieSet[item] = this.allMovies[item];
+                    }
+                });
+            }
+            if (list === "All")
+            {
+                movieSet = this.allMovies;
+            }
+        }
         this.setState({content: movieSet});
     }
 
