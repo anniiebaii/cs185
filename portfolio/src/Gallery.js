@@ -4,7 +4,7 @@ import './Gallery.css';
 class Gallery extends Component{
     constructor(props) {
         super(props);
-        console.log("gal construct");
+        console.log("==== GALLERY ======");
         console.log(props);
         this.state = {selected: undefined,
                       caption: undefined,
@@ -21,7 +21,6 @@ class Gallery extends Component{
         {
             props = this.props;
         }
-        console.log(this.state.modal);
         this.render();
     }
 
@@ -35,11 +34,6 @@ class Gallery extends Component{
     }
 
     closeModal = (event) => {
-        if (this.state.modal !== undefined)
-        {
-            console.log(event.target.id);
-            console.log(event.target.className)
-        }
         if (this.state.modal !== undefined &&
             (event.target.id === "close-button" ||
             (event.target.id !== "modal-content" &&
@@ -54,7 +48,6 @@ class Gallery extends Component{
 
         if (this.state.modal !== undefined && event.target.id === "delete")
         {
-            console.log("tried to del");
             this.props.closeModalCallback();
             this.setState({modal: undefined}, this._refresh);
         }
@@ -62,8 +55,6 @@ class Gallery extends Component{
 
     openModal = (event) => {
         console.log("CLICKED MODAL");
-        console.log(this.props.modalButtons);
-        console.log(event.target.key);
         this.props.openModalCallback();
         if (this.props.openModalUpdate != undefined)
         {
@@ -127,8 +118,6 @@ class Gallery extends Component{
         {
             end = true;
         }
-
-        console.log("PAGE NUMBER: " + this.state.page);
 
         return ([
             <div className="sub-page-container" onClick={this.closeModal}>

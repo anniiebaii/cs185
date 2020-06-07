@@ -16,7 +16,7 @@ class Movies extends Component
     constructor(props)
     {
         super(props);
-        console.log("Movies construct");
+        console.log("===== MOVIES ======");
         console.log(props);
 
         this.state = {page: this.props.state, list: "All", selected: null, content: this.props.source, lists: this.props.lists};
@@ -70,8 +70,6 @@ class Movies extends Component
         var content = this.state.content;
         var code = this.state.selected;
         delete content[code];
-
-        console.log(content);
 
         if (this.state.list !== "All")
         {
@@ -133,7 +131,6 @@ class Movies extends Component
 
         var lists = stateObject["lists"];
         var movies = lists[list_val];
-        console.log(movies);
         if (movies != undefined)
         {
             movies.forEach((item) => 
@@ -164,7 +161,7 @@ class Movies extends Component
             var list_name = property;
             var movies = lists[list_name];
 
-            console.log(`${list_name}: ${movies}`);
+            // console.log(`${list_name}: ${movies}`);
             
             if (curr_list !== list_name)
             {
@@ -185,12 +182,10 @@ class Movies extends Component
                     >All</a>);
             }
        
-        console.log(allLists);
         return allLists;
     }
 
     select(movie){
-        console.log(movie);
         this.setState({selected: movie.id});
     }
 
@@ -206,10 +201,7 @@ class Movies extends Component
             movieSet = {};
             let list = this.state.list;
             var lists = this.state.lists;
-            console.log(list);
-            console.log(lists);
             var movies = lists[list];
-            console.log(movies);
             if (movies != undefined)
             {
                 movies.forEach((item) => 
@@ -248,7 +240,7 @@ class Movies extends Component
 
     render()
     {
-        console.log("movies render");
+        console.log("===== RENDER MOVIES ======");
         this.addToLists =  this.getLists(this.addMovieToList);
         this.selectedLists = this.getLists(this.handleListChange);
 

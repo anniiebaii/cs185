@@ -3,7 +3,7 @@ import BackToTop from './BackToTop.js';
 
 class Projects extends Component {
 
-    _refresh = (props?: GalleryProps) => {
+    _refresh = (props) => {
         if (props === undefined)
         {
             props = this.props;
@@ -11,7 +11,6 @@ class Projects extends Component {
     }
     componentDidUpdate() {
         this.render();
-        console.log(this.state);
     }
 
     componentDidMount() {
@@ -24,7 +23,7 @@ class Projects extends Component {
               <h2 className="subheader">Projects</h2>
               {<BackToTop/>}
           </div>,
-          <div className="sub-page-container" key="ThinkFast-intro">
+          <div className="sub-page-container" key="ThinkFast-intro" style={{minHeight: "auto"}}>
               <h3 className="subheader_1">ThinkFast (2nd Year, 2018)</h3>
               <p className="text-body">
                   ThinkFast is a fun collection of brain-games that test a player's quick judgement and problem-solving skills while on a timer. As the player completes puzzles, the timer is extended, but the difficulty also increases. We currently have three mini games, which are described below.</p>

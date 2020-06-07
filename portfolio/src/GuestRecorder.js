@@ -13,20 +13,6 @@ function GuestRecorder(props) {
 
     var info = props.info
 
-    // if (info !== "")
-    // {
-    //     updateBook();
-    // }
-    //
-
-    // 1. Retrieve Data & Submit Data -- on retrieve always (2)
-    // 2. Render GuestBook
-    // 3. Render GuestForm -- onSubmit always pass into (1)
-    //
-
-
-    // callback function for useEffect
-    // basically runs the callback when shouldRender changes
     useEffect(() => {
 
         if (!firebase.apps.length) {
@@ -45,9 +31,7 @@ function GuestRecorder(props) {
              //set your apps state to contain this data however you like
              // const state = snapshot.val()
              snapshot.forEach(function (childSnapshot) {
-                 console.log(childSnapshot.val());
                  var value = JSON.parse(childSnapshot.val());
-                 console.log(value["anon"]);
                  if (value["anon"] === false)
                  {
                      dataSet.push(value);
