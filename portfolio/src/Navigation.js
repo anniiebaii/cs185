@@ -24,7 +24,7 @@ class Navigation extends Component {
         window.addEventListener('scroll', this.scrollFunction);
         this.scrollPosition = 0;
 
-        this.movieOptions = ['movies', 'add-movies', 'create-movies-list'];
+        this.movieOptions = ['movies', 'add-movies', 'create-movies-list', 'graphviz'];
 
         this.moviesSet = RetrieveMovieInfo();
         this.movieListsSet = RetrieveMovieLists();
@@ -117,6 +117,10 @@ class Navigation extends Component {
                            id="create-movies-list"
                            onClick={this.changeTabs}
                            >New Movie Lists</a>
+                        <a className={this.state.page === "graphviz" ? "active-button" : "sub-button" }
+                           id="graphviz"
+                           onClick={this.changeTabs}
+                           >GraphViz</a>
                     </div>
                 </div></li>
               {/* Intro, hobbies, next steps ==> Pic */}

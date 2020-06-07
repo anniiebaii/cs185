@@ -22,8 +22,6 @@ function RetrieveMovieLists()
     var data = {};
     var lists = [];
     var movieListsRef = firebase.database().ref("MovieLists");
-    console.log(movieListsRef);
-
     //retrieve its data
     movieListsRef.on('value', snapshot => {
          //this is your call back function

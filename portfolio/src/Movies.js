@@ -8,6 +8,7 @@ import movies from './movie_list.json';
 import config from './config.js';
 import './Movies.css';
 import RetrieveMovieLists from './RetrieveMovieLists';
+import GraphViz from './GraphViz';
 
 // Controller for Movies tab
     // Handles switching of panes
@@ -290,8 +291,10 @@ class Movies extends Component
                             <MoviesSearch source={this.state.content} callBack={this.handleSearch}/>
                         </div>}/> :
             (this.props.page === "add-movies" ?
-                <MoviesAdd/> :
-                <MoviesList/>)        ])
+                <MoviesAdd/> : 
+            (this.props.page === "graphviz" ? 
+                <GraphViz movies={this.allMovies} list={this.state.lists["GraphViz"]}  /> :
+                <MoviesList/>))        ])
     }
 
 }

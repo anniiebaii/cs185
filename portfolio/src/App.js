@@ -7,7 +7,7 @@ class App extends Component {
         
     }
 
-    _refresh = (propss) => {
+    _refresh = (props) => {
         if (props === undefined)
         {
             props = this.props;
