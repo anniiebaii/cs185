@@ -51,18 +51,15 @@ class MoviesSearch extends Component
             var title = data.title.toLowerCase();
             if (title.includes(this.state.keyword.toLowerCase()))
             {
-                console.log(title);
                 movieSet.push(data);
             }
         }
-        console.log(movieSet);
         this.props.callBack(movieSet);
 
     }
 
     componentDidUpdate()
     {
-        console.log(this.state);
         this.render();
     }
 

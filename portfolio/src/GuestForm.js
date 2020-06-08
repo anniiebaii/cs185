@@ -75,7 +75,7 @@ class GuestForm extends Component<GuestFormProps, GuestFormState>
 
     componentDidUpdate()
     {
-        console.log(this.state);
+        // console.log(this.state);
     }
 
     render()

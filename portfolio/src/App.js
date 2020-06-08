@@ -3,23 +3,17 @@ import './App.css';
 import './GuestBook.css';
 
 class App extends Component {
-    changeTabs = (event : any) => {
-        console.log(event.target.id);
-        console.log(event.target);
+    changeTabs = (event) => {
+        
     }
 
-    _refresh = (props?: NavigationProps) => {
+    _refresh = (props) => {
         if (props === undefined)
         {
             props = this.props;
         }
-        console.log(this.state);
     }
 
-    // componentDidUpdate() {
-    //     // this.render();
-    //     // console.log(this.state);
-    // }
     componentDidMount() {
         document.title = 'CMPSC 185';
     }

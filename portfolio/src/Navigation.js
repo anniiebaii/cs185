@@ -14,8 +14,8 @@ import RetrieveMovieLists from './RetrieveMovieLists';
 class Navigation extends Component {
     constructor(props) {
         super(props);
+        console.log("===== NAVIGATION =====");
         console.log(props);
-        console.log("contruct");
         this.state = {page: "home", component: undefined, disableScroll: false};
         this.changeTabs = this.changeTabs.bind(this);
         this.scrollFunction = this.scrollFunction.bind(this);
@@ -24,7 +24,7 @@ class Navigation extends Component {
         window.addEventListener('scroll', this.scrollFunction);
         this.scrollPosition = 0;
 
-        this.movieOptions = ['movies', 'add-movies', 'create-movies-list'];
+        this.movieOptions = ['movies', 'add-movies', 'create-movies-list', 'graphviz'];
 
         this.moviesSet = RetrieveMovieInfo();
         this.movieListsSet = RetrieveMovieLists();
@@ -33,7 +33,6 @@ class Navigation extends Component {
     scrollFunction() {
         var mybutton = document.getElementById("back-to-top");
         // this.scrollPosition = document.documentElement.scrollTop;
-        // console.log(this.scrollPosition);
         if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
             mybutton.style.display = "block"
         }
@@ -44,10 +43,8 @@ class Navigation extends Component {
     }
 
     disableScroll() {
-        console.log("disable");
+        console.log("disable scroll");
         this.scrollPosition = document.documentElement.scrollTop;
-        console.log(this.scrollPosition);
-
         const body = document.body;
         body.style.position = 'fixed';
         // body.style.top = scrollY;
@@ -55,9 +52,7 @@ class Navigation extends Component {
     }
 
     enableScroll() {
-        console.log("enable");
-        console.log(this.scrollPosition);
-
+        console.log("enable scroll");
         const body = document.body;
         const scrollY = body.style.top;
         body.style.position = '';
@@ -67,8 +62,6 @@ class Navigation extends Component {
 
     changeTabs = (event) => {
         console.log(event.target.id);
-        console.log(event.target);
-
         this.setState({page: event.target.id}, this._refresh);
     }
 
@@ -77,15 +70,14 @@ class Navigation extends Component {
         {
             props = this.props;
         }
-        console.log(this.state);
     }
 
     componentDidUpdate(prevProps) {
-        console.log(this.state);
+        // console.log(this.state);
     }
 
   render() {
-      console.log("NAv render");
+      console.log("==== RENDER NAVIGATION ====");
       this.moviesSet = RetrieveMovieInfo();
       return ([
           <div className="navigation-container" key="TabList">
@@ -125,6 +117,10 @@ class Navigation extends Component {
                            id="create-movies-list"
                            onClick={this.changeTabs}
                            >New Movie Lists</a>
+                        <a className={this.state.page === "graphviz" ? "active-button" : "sub-button" }
+                           id="graphviz"
+                           onClick={this.changeTabs}
+                           >GraphViz</a>
                     </div>
                 </div></li>
               {/* Intro, hobbies, next steps ==> Pic */}

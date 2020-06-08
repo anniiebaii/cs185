@@ -37,7 +37,6 @@ class MoviesAdd extends Component
 
         var ref = firebase.database().ref('Movies/' + imdb).once("value", snapshot => {
             if (snapshot.exists()){
-                console.log("exists!");
                 exists = true;
             }
         });
@@ -64,8 +63,6 @@ class MoviesAdd extends Component
 
         var imdb = this.state.imdb;
         var success = false;
-
-        console.log(this.exists(imdb));
 
         if (this.state.imdb === "")
         {
@@ -96,6 +93,7 @@ class MoviesAdd extends Component
                 item["title"] = response.data.Title;
                 item["filename"] = response.data.Poster;
                 item["caption"] = response.data.Title + " | Director(s): " + response.data.Director + " | IMDB Rating: " + response.data.imdbRating;
+                item["actors"] = response.data.Actors;
                 var jsonBody = JSON.stringify(item);
                 // Send Data to Firebase
                 firebase.database().ref('Movies/' + item["id"]).set(jsonBody, function(res) {
@@ -126,7 +124,6 @@ class MoviesAdd extends Component
 
     componentDidUpdate()
     {
-        console.log(this.state);
         this.render();
     }
 

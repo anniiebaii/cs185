@@ -27,7 +27,7 @@ img.resize {
     margin: auto;
     max-width: 100%;
     height: auto;
-    min-height: 1000px;
+    min-height: 500px;
     /* padding-bottom: 5%; */
     overflow: hidden;
 }
