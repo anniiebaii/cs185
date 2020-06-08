@@ -1,4 +1,5 @@
 import React, {Component} from 'react'; 
+import './Movies.css';
 var d3 = require("d3");
 
 const data = 
@@ -68,6 +69,7 @@ class GraphViz extends Component
         this.links = [];
         this.nodes = [];
         const allActors = {};
+        const allMovies = {};
         this.content = {};
         list.forEach((item) => 
         {
@@ -78,6 +80,7 @@ class GraphViz extends Component
 
                 // add movie as new node 
                 var newMovieNode = {};
+                newMovieNode["id"] = this.nodes.length;
                 newMovieNode["name"] = data.title;
                 newMovieNode["group"] = MOVIE; 
                 newMovieNode["image"] = data.filename;
@@ -100,6 +103,7 @@ class GraphViz extends Component
                         console.log(allActors);
                         // add actor as a new node
                         var newActorNode = {}; 
+                        newActorNode["id"] = this.nodes.length;
                         newActorNode["name"] = name; 
                         newActorNode["group"] = ACTOR;
                         this.nodes.push(newActorNode);
@@ -112,6 +116,7 @@ class GraphViz extends Component
 
                     // link actor to the movie 
                     var newLink = {};
+                    newLink["id"] = this.links.length
                     newLink["source"] = actorIndex;
                     newLink["target"] = movieIndex; 
                     newLink["value"] = 1;
@@ -173,6 +178,7 @@ class GraphViz extends Component
             .selectAll("line")
             .data(obj_links)
             .join("line")
+            .attr("className", "link")
             .attr("stroke-width", d => Math.sqrt(d.value));
         
         const color = (node) => {
@@ -211,6 +217,9 @@ class GraphViz extends Component
             node
                 .attr("cx", d => d.x)
                 .attr("cy", d => d.y);
+            text 
+                .attr("x", d => d.x + 150 )
+                .attr("y", d => d.y);
         });
 
         const fill = (node) => {
@@ -221,18 +230,58 @@ class GraphViz extends Component
             return d3.color("steelblue");
         }
 
+        const getID = (node) => {
+            return node.id;
+        }
+
+        const text = svg.append("g")
+            .attr("stroke", "#000")
+            .attr("stroke-width", 1.5)
+            .selectAll("text")
+            .data(obj_nodes)
+            .join("text")
+            .attr("className", "nodeText")
+            .attr("id", getID)
+            .text(name)
+            .style("font-size", "30px")
+            .style("display", "none")
+            .call(this.drag(simulation));
 
         const node = svg.append("g")
             .attr("stroke", "#fff")
             .attr("stroke-width", 1.5)
             .selectAll("circle")
             .data(obj_nodes)
-            .attr("id", name)
             .join("circle")
+            .attr("className", "node")
+            .attr("id", name)
             .attr("r", radius)
             .attr("fill", d3.color("steelblue"))
             .style("fill", fill)
+            .on( 'mouseenter', function() {
+                // select element in current context
+                console.log("mousenter");
+                const element = d3.select(this);
+                const name = element.attr("id")
+                console.log(name);
+                
+                const text = d3.select("text").html(name)
+                    .style("display", "block");
+              })
+              // set back
+              .on( 'mouseleave', function() {
+                const element = d3.select(this);
+                const name = element.attr("id")
+                console.log(name);
+                d3.select("text").html(name)
+                    .style("display", "none");
+              })
             .call(this.drag(simulation));
+        
+        const getText = (node) => {
+            return node.name;
+        }
+        
         
         nodes.forEach(function(d, i) {
             defs.append("svg:pattern")
