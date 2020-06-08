@@ -244,19 +244,7 @@ class GraphViz extends Component
             return "text_" + node.id;
         }
 
-        const text = svg.append("g")
-            .attr("id", "texts")
-            .attr("stroke", "#000")
-            .attr("stroke-width", 1.5)
-            .selectAll("text")
-            .data(obj_nodes)
-            .join("text")
-            .attr("className", "nodeText")
-            .attr("id", getTextID)
-            .text(name)
-            .style("font-size", "30px")
-            .style("display", "none")
-            .call(this.drag(simulation));
+        
         
         // const strokeColor = (node) => {
         //     if (node.group == MOVIE) 
@@ -285,7 +273,7 @@ class GraphViz extends Component
                 const id = d3.select(this).attr("id")
             
                 
-                d3.select("#text_" + id).style("display", "block")
+                d3.select("#text_" + id).style("display", "block");
                  
                 
               })
@@ -300,7 +288,21 @@ class GraphViz extends Component
             .call(this.drag(simulation));
         node.append("svg:title")
         .text(function(d) {return d.name})
-        
+
+        const text = svg.append("g")
+            .attr("id", "texts")
+            .attr("stroke", "#000")
+            .attr("stroke-width", 1.5)
+            .selectAll("text")
+            .data(obj_nodes)
+            .join("text")
+            .attr("className", "nodeText")
+            .attr("id", getTextID)
+            .text(name)
+            .style("font-size", "30px")
+            .style("display", "none")
+            .style("z-index", 500)
+            .call(this.drag(simulation));
         
             
         
