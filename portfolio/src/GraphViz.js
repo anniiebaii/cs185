@@ -235,6 +235,7 @@ class GraphViz extends Component
         }
 
         const text = svg.append("g")
+            .attr("id", "texts")
             .attr("stroke", "#000")
             .attr("stroke-width", 1.5)
             .selectAll("text")
@@ -248,6 +249,7 @@ class GraphViz extends Component
             .call(this.drag(simulation));
 
         const node = svg.append("g")
+            .attr("id", "graph")
             .attr("stroke", "#fff")
             .attr("stroke-width", 1.5)
             .selectAll("circle")
@@ -262,19 +264,40 @@ class GraphViz extends Component
                 // select element in current context
                 console.log("mousenter");
                 const element = d3.select(this);
-                const name = element.attr("id")
-                console.log(name);
+                const id = element.attr("id")
+                console.log(id);
                 
-                const text = d3.select("text").html(name)
-                    .style("display", "block");
+                // const text = d3.select(".nodeText#1").html(id)
+                //     .style("display", "block");
+                
+                d3.select("#mysvg")
+                    .append("div")
+                    .attr("id", "tooltip")
+                    .style("position", "absolute")
+                    .style("z-index", "10")
+                    .attr("x", element.attr("cx"))
+                    .attr("y", element.attr("cy"))
+                    .style("visibility", "visible")
+                    .text(id);
+                    
+                // svg.append("g")
+                //     .attr("stroke", "#000")
+                //     .attr("stroke-width", 1.5)
+                //     .join("text")
+                //     .attr("className", "nodeText")
+                //     .attr("id", id)
+                //     .text(id)
+                //     .attr("x", element.attr("cx") + 50)
+                //     .attr("y", element.attr("cy") + 50)
+                //     .style("font-size", "30px")
+                //     .style("display", "block"); 
               })
               // set back
               .on( 'mouseleave', function() {
                 const element = d3.select(this);
                 const name = element.attr("id")
                 console.log(name);
-                d3.select("text").html(name)
-                    .style("display", "none");
+                d3.select("#tooltip").remove();
               })
             .call(this.drag(simulation));
         
