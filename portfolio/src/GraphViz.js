@@ -1,5 +1,6 @@
 import React, {Component} from 'react'; 
 import './Movies.css';
+import { schemeDark2 } from 'd3';
 var d3 = require("d3");
 
 const data = 
@@ -256,11 +257,19 @@ class GraphViz extends Component
             .style("font-size", "30px")
             .style("display", "none")
             .call(this.drag(simulation));
+        
+        // const strokeColor = (node) => {
+        //     if (node.group == MOVIE) 
+        //     {
+        //         return "#fff";
+        //     }
+        //     return d3.color("steelblue");
+        // }
 
         const node = svg.append("g")
             .attr("id", "graph")
             .attr("stroke", "#fff")
-            .attr("stroke-width", 1.5)
+            .attr("stroke-width", 3)
             .selectAll("circle")
             .data(obj_nodes)
             .join("circle")
