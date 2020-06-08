@@ -146,6 +146,7 @@ class GraphViz extends Component
         function dragged(d) {
             d.fx = d3.event.x;
             d.fy = d3.event.y;
+            d3.select("#text_" + d3.event.subject.index).attr("x", d.fx).attr("y", d.fy);
         }
 
         function dragEnded(d) {
@@ -156,6 +157,7 @@ class GraphViz extends Component
             d.fx = null;
             d.fy = null;
         }
+
         return d3.drag()
             .on("start", dragStarted)
             .on("drag", dragged)
@@ -223,9 +225,6 @@ class GraphViz extends Component
             text 
                 .attr("x", d => d.x + 150 )
                 .attr("y", d => d.y);
-            tooltip
-                .attr("x", d => d.x + 150 )
-                .attr("y", d => d.y);
         });
 
         const fill = (node) => {
@@ -240,6 +239,10 @@ class GraphViz extends Component
             return node.id;
         }
 
+        const getTextID = (node) => {
+            return "text_" + node.id;
+        }
+
         const text = svg.append("g")
             .attr("id", "texts")
             .attr("stroke", "#000")
@@ -248,19 +251,10 @@ class GraphViz extends Component
             .data(obj_nodes)
             .join("text")
             .attr("className", "nodeText")
-            .attr("id", getID)
+            .attr("id", getTextID)
             .text(name)
             .style("font-size", "30px")
             .style("display", "none")
-            .call(this.drag(simulation));
-
-        
-        const tooltip = d3.select("#graph")
-            .append("text")
-            .attr("id", "tooltip")
-            .style("position", "absolute")
-            .style("z-index", "10")
-            .style("visibility", "hidden")
             .call(this.drag(simulation));
 
         const node = svg.append("g")
@@ -271,34 +265,28 @@ class GraphViz extends Component
             .data(obj_nodes)
             .join("circle")
             .attr("className", "node")
-            .attr("id", name)
+            .attr("id", getID)
             .attr("r", radius)
             .attr("fill", d3.color("steelblue"))
             .style("fill", fill);
+
         node.on( 'mouseenter', function() {
                 // select element in current context
                 console.log("mousenter");
-                const element = d3.select(this);
-                const id = element.attr("id")
-                console.log(id);
+                const id = d3.select(this).attr("id")
+            
                 
-                // const text = d3.select(".nodeText#1").html(id)
-                //     .style("display", "block");
-                var tooltip = d3.select("#tooltip");
-                var x = d3.select(this).attr("cx");
-                var y = d3.select(this).attr("cy");
-                tooltip.attr("x", x + 10)
-                        .attr("y", y + 10)
-                        .style("visibility", "visible")
-                        .text(id);
+                d3.select("#text_" + id).style("display", "block")
                  
                 
               })
             .on( 'mouseleave', function() {
-                const element = d3.select(this);
-                const name = element.attr("id")
-                console.log(name);
+                const id = d3.select(this).attr("id")
+                console.log(id);
+                
                 d3.select("#tooltip").style("visibility", "hidden");
+                d3.select("#text_" + id).style("display", "none")
+
               })
             .call(this.drag(simulation));
         node.append("svg:title")
