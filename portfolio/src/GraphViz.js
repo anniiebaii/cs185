@@ -201,16 +201,6 @@ class GraphViz extends Component
                             .id(d => {return d.index;}).distance(200)) // forces links to bounce back after dragging
             .force("charge", d3.forceManyBody())
             .force("center", d3.forceCenter(width / 2, height / 2));
-        
-        const node = svg.append("g")
-            .attr("stroke", "#fff")
-            .attr("stroke-width", 1.5)
-            .selectAll("circle")
-            .data(obj_nodes)
-            .join("circle")
-            .attr("r", radius)
-            .style("fill", color)
-            .call(this.drag(simulation));
 
         simulation.on("tick", () => {
             link 
@@ -218,11 +208,46 @@ class GraphViz extends Component
                 .attr("y1", d => d.source.y)
                 .attr("x2", d => d.target.x)
                 .attr("y2", d => d.target.y);
-            node 
+            node
                 .attr("cx", d => d.x)
                 .attr("cy", d => d.y);
         });
+
+        const fill = (node) => {
+            if (node.group == MOVIE)
+            {
+                return "url(#" + node.image + ")";
+            }
+            return d3.color("steelblue");
+        }
+
+
+        const node = svg.append("g")
+            .attr("stroke", "#fff")
+            .attr("stroke-width", 1.5)
+            .selectAll("circle")
+            .data(obj_nodes)
+            .attr("id", name)
+            .join("circle")
+            .attr("r", radius)
+            .attr("fill", d3.color("steelblue"))
+            .style("fill", fill)
+            .call(this.drag(simulation));
         
+        nodes.forEach(function(d, i) {
+            defs.append("svg:pattern")
+              .attr("id", d.image)
+              .attr("width", 1)
+              .attr("height", 1)
+              .append("svg:image")
+              .attr("xlink:href", d.image)
+              .attr("width", 300)
+              .attr("height", 300)
+              .attr("x", -50)
+              .attr("y", -30);    
+          })
+                
+                
         return svg.node();
     }
 
