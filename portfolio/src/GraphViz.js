@@ -63,6 +63,8 @@ class GraphViz extends Component
         super(props);
         console.log("==== GRAPHVIZ ====");
 
+        this.chart = this.chart.bind(this);
+
         var list = this.props.list;
         var movies = this.props.movies;
         
@@ -168,7 +170,8 @@ class GraphViz extends Component
         const obj_links = links.map(d => Object.create(d));
 
         const svg = d3.create("svg")
-            .attr("viewBox", [0,0, width, height]);
+            .attr("viewBox", [0,0, width, height])
+            .attr("id", "viewBox");
         
         const defs = svg.append('svg:defs');
     
@@ -220,6 +223,9 @@ class GraphViz extends Component
             text 
                 .attr("x", d => d.x + 150 )
                 .attr("y", d => d.y);
+            tooltip
+                .attr("x", d => d.x + 150 )
+                .attr("y", d => d.y);
         });
 
         const fill = (node) => {
@@ -248,6 +254,15 @@ class GraphViz extends Component
             .style("display", "none")
             .call(this.drag(simulation));
 
+        
+        const tooltip = d3.select("#graph")
+            .append("text")
+            .attr("id", "tooltip")
+            .style("position", "absolute")
+            .style("z-index", "10")
+            .style("visibility", "hidden")
+            .call(this.drag(simulation));
+
         const node = svg.append("g")
             .attr("id", "graph")
             .attr("stroke", "#fff")
@@ -259,8 +274,8 @@ class GraphViz extends Component
             .attr("id", name)
             .attr("r", radius)
             .attr("fill", d3.color("steelblue"))
-            .style("fill", fill)
-            .on( 'mouseenter', function() {
+            .style("fill", fill);
+        node.on( 'mouseenter', function() {
                 // select element in current context
                 console.log("mousenter");
                 const element = d3.select(this);
@@ -269,37 +284,28 @@ class GraphViz extends Component
                 
                 // const text = d3.select(".nodeText#1").html(id)
                 //     .style("display", "block");
+                var tooltip = d3.select("#tooltip");
+                var x = d3.select(this).attr("cx");
+                var y = d3.select(this).attr("cy");
+                tooltip.attr("x", x + 10)
+                        .attr("y", y + 10)
+                        .style("visibility", "visible")
+                        .text(id);
+                 
                 
-                d3.select("#mysvg")
-                    .append("div")
-                    .attr("id", "tooltip")
-                    .style("position", "absolute")
-                    .style("z-index", "10")
-                    .attr("x", element.attr("cx"))
-                    .attr("y", element.attr("cy"))
-                    .style("visibility", "visible")
-                    .text(id);
-                    
-                // svg.append("g")
-                //     .attr("stroke", "#000")
-                //     .attr("stroke-width", 1.5)
-                //     .join("text")
-                //     .attr("className", "nodeText")
-                //     .attr("id", id)
-                //     .text(id)
-                //     .attr("x", element.attr("cx") + 50)
-                //     .attr("y", element.attr("cy") + 50)
-                //     .style("font-size", "30px")
-                //     .style("display", "block"); 
               })
-              // set back
-              .on( 'mouseleave', function() {
+            .on( 'mouseleave', function() {
                 const element = d3.select(this);
                 const name = element.attr("id")
                 console.log(name);
-                d3.select("#tooltip").remove();
+                d3.select("#tooltip").style("visibility", "hidden");
               })
             .call(this.drag(simulation));
+        node.append("svg:title")
+        .text(function(d) {return d.name})
+        
+        
+            
         
         const getText = (node) => {
             return node.name;
@@ -307,16 +313,20 @@ class GraphViz extends Component
         
         
         nodes.forEach(function(d, i) {
-            defs.append("svg:pattern")
-              .attr("id", d.image)
-              .attr("width", 1)
-              .attr("height", 1)
-              .append("svg:image")
-              .attr("xlink:href", d.image)
-              .attr("width", 300)
-              .attr("height", 300)
-              .attr("x", -50)
-              .attr("y", -30);    
+            if (d.group == MOVIE)
+            {
+                defs.append("svg:pattern")
+                .attr("id", d.image)
+                .attr("width", 1)
+                .attr("height", 1)
+                .append("svg:image")
+                .attr("xlink:href", d.image)
+                .attr("width", 300)
+                .attr("height", 300)
+                .attr("x", -50)
+                .attr("y", -30);   
+            }
+            
           })
                 
                 
